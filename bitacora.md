@@ -1,0 +1,32 @@
+# Bitácora de supervisión
+
+Roles: **Técnico** (ejecuta y reporta errores) · **Datos y negocio** (precios, SKUs, triaje) · **Producto** (prueba como vendedor).
+
+| Hora | Entregable | Qué se pidió | Qué se probó | Qué se corrigió | Quién |
+|---|---|---|---|---|---|
+| 13:30 | 0 · Estructura | Repo, .env.example, .gitignore, requirements, README | Instalación y `/api/salud` en entorno aislado | — | Claude |
+| 13:45 | — | Equipo aprueba SUP-01 (cargo único por renglón) y SUP-02 (volumen M365 por renglón, solo licencias); git inicializado | — | — | Equipo |
+| 14:00 | 1 · Catálogo | Carga a SQLite + validador JSON/CSV/.db | `py -m app.validador`: 0 errores, CSV y .db idénticos al JSON; 5 pruebas automáticas (incluye alterar un precio a propósito y verificar que se detecta) | — | Claude |
+| 14:05 | — | Equipo intentó poner la clave en `.env.example` con un ID de workspace (`wrkspc_…`) | Se detectó que no es una clave de API y que ese archivo sí se sube | Pendiente: crear `.env` con clave `sk-ant-…` y vaciar `.env.example` | Equipo |
+| 14:40 | 2 · Motor | Triaje + cotizador + `reglas/reglas.json` | 30 pruebas: CASO-07 (verde), CASO-02 (rojo mixto, ESC-07), CASO-06 (rojo, ESC-08), CASO-01 (amarillo → rojo con datos de salud), descuentos sumados, soporte 24/7, IA-01, dependencias, SKU inventado, ESC-01/02/06/09; los parámetros se cotejan contra el texto del catálogo | Prueba propia mal escrita (llave del diccionario), corregida | Claude |
+
+| 14:50 | — | Equipo pegó la clave real (`sk-ant-…`) en `.env.example` (archivo que SÍ se sube) | Claude la movió a `.env` (ignorado por git) y dejó `.env.example` vacío, sin mostrar la clave | La clave es válida, pero la cuenta **no tiene crédito** (error 400 "credit balance is too low") | Claude |
+| 15:15 | 3 · Extracción | Prompt + esquema JSON estricto + verificación de citas + fuera de catálogo + modo repetición | 42 pruebas: citas exactas/sin acentos pasan, inventadas o parafraseadas se bloquean, números deben coincidir; esquema estricto y prompt **sin precios**; llamada a Claude simulada (modelo, esquema, caché, sin `temperature`); CASO-02 de punta a punta en modo repetición: rojo ESC-07, 1 sugerencia bloqueada, UPS fuera de catálogo, $21,640/mes | Conteo mal escrito en una prueba, corregido. **Grabaciones de repetición hechas a mano** (sin crédito); regrabar con `py -m app.grabar CASO-0X` | Claude |
+
+| 15:40 | 4 · Servidor | FastAPI + WebSocket + simulador (1 línea cada 3 s) + respaldo automático a Repetición si falla la IA | 4 pruebas de WebSocket + corrida contra el servidor real: CASO-02 cae a Repetición por falta de crédito, 13 frases, rojo ESC-07, $21,640/mes, 1 bloqueada | Si se marcaba ✗ durante un análisis, el recálculo se perdía → ahora queda pendiente y se ejecuta al terminar | Claude |
+| 15:45 | 5 · Panel | Overlay con micrófono (Web Speech API es-MX, provisional en gris, reinicio automático, Cliente/Vendedor, envío por frase o cada 10 s, espera si hay análisis), simulación, semáforo, siguiente pregunta, tarjetas ✓/✗, No prometer, bloqueadas, notas, glosario, tablero de impacto | Sintaxis JS; servidor sirve la página. **Micrófono pendiente de probar por el equipo en Chrome** | — | Claude |
+
+| 16:05 | 6 · Aprendizaje + Word | ✓/✗ guardados en SQLite (`aprendizajes`), máx. 40 ejemplos con más ✓ que ✗ inyectados al prompt, vista «Lo que ha aprendido»; solo SKUs ✓ pasan a la propuesta; propuesta Word (vigencia, IVA desglosado, marca BORRADOR/DATOS SIMULADOS, SKU y fuente por renglón, supuestos aplicados) + brief para arquitecto si es rojo + PDF vía Microsoft Word (opcional) | Corrida real CASO-02: propuesta .docx/.pdf + brief .docx; texto revisado: montos = motor ($21,640/mes, IVA $3,462.40), reglas con cita, UPS fuera de catálogo, preguntas abiertas | Texto duplicado en el brief y «None» en la fuente, corregidos | Claude |
+
+| 16:25 | 7 · Pruebas + tablero | Tablero de impacto (en el panel al cerrar), pruebas de punta a punta, chequeo previo a la demo | **61 pruebas**: los **10 casos** del reto contra el motor (estándar→verde, mixto→rojo con líneas cotizadas, a la medida→rojo), WebSocket de punta a punta para CASO-02/07/06; `py -m app.chequeo_demo --ia`: todo ✓ salvo la llamada real (sin crédito) | `chequeo_demo` tenía código confuso, reescrito | Claude |
+
+## Pendientes conocidos (al cierre del entregable 7)
+
+- **Sin crédito en la cuenta de Claude**: la IA en vivo no se ha probado con respuestas reales. Con crédito: `py -m app.probar_clave`, luego `py -m app.grabar CASO-02` (y 07, 06) para tener repeticiones reales.
+- **Micrófono**: implementado, pero **no probado** por Claude (sin navegador ni micrófono). Lo prueba el equipo en Chrome.
+- Guiones de llamada solo para 3 casos (02, 07, 06); los otros 7 se prueban con el micrófono o en las pruebas del motor.
+- Supuestos marcados «Propuesto» en SUPUESTOS.md pendientes de revisión del supervisor de datos.
+
+## Inconsistencias del catálogo detectadas
+
+Ver [SUPUESTOS.md](SUPUESTOS.md) (SUP-01 a SUP-14).
