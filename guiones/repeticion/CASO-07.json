@@ -1,0 +1,69 @@
+{
+  "_nota": "Modo REPETICIÓN (sin IA). Respuestas PREGRABADAS escritas a mano con el formato de Claude (la cuenta aún no tenía crédito). Regrabar con: py -m app.grabar CASO-07",
+  "pasos": [
+    {
+      "tras_frases": 2,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-BK-01", "cantidad": null, "cita": "Necesitamos respaldar los archivos de nuestros clientes", "dile_al_cliente": "Sus archivos quedan respaldados en la nube y nadie los puede borrar."},
+          {"sku": "SIM-BK-05", "cantidad": null, "cita": "el SAT nos pide guardarlos 5 años", "dile_al_cliente": "Guardamos los respaldos los 5 años que le pide el SAT, listos para una auditoría."}
+        ],
+        "hechos": [],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Respaldar archivos de clientes y conservarlos 5 años", "estado": "completo", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "Falta cuántos TB", "estado": "faltante", "cita": ""},
+          {"tema": "Situación actual", "resumen": "Falta dónde están los archivos hoy", "estado": "faltante", "cita": ""},
+          {"tema": "Continuidad y tiempos", "resumen": "Falta", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Obligación del SAT de conservar 5 años", "estado": "incompleto", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta plazo", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-BK-05", "pregunta": "¿Cuántos años deben conservar?", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"sku": "SIM-BK-05", "pregunta": "¿Quién lo pide?", "cita": "el SAT nos pide guardarlos 5 años"}
+        ],
+        "glosario": [
+          {"termino": "Retención extendida", "en_lenguaje_comercial": "Guardar copias por años para cumplir con auditorías o con la ley."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Cuántos TB respaldan?", "por_que": "El respaldo se cobra por TB."}
+      }
+    },
+    {
+      "tras_frases": 10,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-BK-01", "cantidad": 2, "cita": "Son como 2 TB de archivos de clientes", "dile_al_cliente": "Sus archivos quedan respaldados en la nube y nadie los puede borrar."},
+          {"sku": "SIM-BK-05", "cantidad": 2, "cita": "el SAT nos pide guardarlos 5 años", "dile_al_cliente": "Guardamos los respaldos los 5 años que le pide el SAT, listos para una auditoría."},
+          {"sku": "SIM-BK-02", "cantidad": 12, "cita": "los 12 usamos Microsoft 365 para el correo", "dile_al_cliente": "Su correo y archivos de Microsoft 365 también quedan respaldados todos los días."}
+        ],
+        "hechos": [
+          {"nombre": "regulacion", "valor": "otra", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"nombre": "usuarios_m365", "valor": "12", "cita": "los 12 usamos Microsoft 365"},
+          {"nombre": "plazo_meses", "valor": "12", "cita": "A 12 meses está bien"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Respaldar archivos de clientes y conservarlos 5 años", "estado": "completo", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "2 TB y 12 usuarios de Microsoft 365", "estado": "completo", "cita": "Son como 2 TB de archivos de clientes"},
+          {"tema": "Situación actual", "resumen": "Archivos en una computadora de la oficina", "estado": "completo", "cita": "están en una computadora de la oficina"},
+          {"tema": "Continuidad y tiempos", "resumen": "No se habló de tiempos de recuperación", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Solo SAT; sin datos de salud ni tarjetas", "estado": "completo", "cita": "No, nada de eso, solo información fiscal y contable"},
+          {"tema": "Plazo y presupuesto", "resumen": "12 meses", "estado": "completo", "cita": "A 12 meses está bien"}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-BK-01", "pregunta": "¿Cuántos TB respaldan?", "cita": "Son como 2 TB de archivos de clientes"},
+          {"sku": "SIM-BK-01", "pregunta": "¿Dónde están los respaldos hoy?", "cita": "están en una computadora de la oficina"},
+          {"sku": "SIM-BK-05", "pregunta": "¿Cuántos años deben conservar?", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"sku": "SIM-BK-05", "pregunta": "¿Qué información?", "cita": "solo información fiscal y contable"},
+          {"sku": "SIM-BK-05", "pregunta": "¿Quién lo pide?", "cita": "el SAT nos pide guardarlos 5 años"},
+          {"sku": "SIM-BK-02", "pregunta": "¿Cuántos usuarios tienen Microsoft 365?", "cita": "los 12 usamos Microsoft 365"}
+        ],
+        "glosario": [
+          {"termino": "Retención extendida", "en_lenguaje_comercial": "Guardar copias por años para cumplir con auditorías o con la ley."},
+          {"termino": "TB (terabyte)", "en_lenguaje_comercial": "Unidad de tamaño de información; 1 TB son unas 250,000 fotos."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Qué tan seguido cambia la información?", "por_que": "Ayuda a confirmar que el respaldo diario es suficiente."}
+      }
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "_nota": "Modo REPETICIÓN (sin IA). Respuestas PREGRABADAS escritas a mano con el mismo formato que devuelve Claude, porque la cuenta aún no tenía crédito. Regrabar con respuestas reales: py -m app.grabar CASO-02. En el último paso se incluye A PROPÓSITO una sugerencia (SIM-DC-09) con una cita que NO está en la transcripción, para demostrar que el verificador la bloquea.",
+  "pasos": [
+    {
+      "tras_frases": 2,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-DC-04", "cantidad": null, "cita": "Nuestro ERP corre en dos servidores en un cuarto de la planta", "dile_al_cliente": "Sus sistemas pasan a un centro de datos con energía y respaldo eléctrico permanentes, así un apagón ya no detiene la planta."}
+        ],
+        "hechos": [],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Los cortes de luz detienen el ERP de la planta", "estado": "completo", "cita": "Se nos fue la luz dos veces este año y paramos la operación"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "Dos servidores; faltan recursos", "estado": "incompleto", "cita": "Nuestro ERP corre en dos servidores"},
+          {"tema": "Situación actual", "resumen": "Servidores propios en un cuarto de la planta", "estado": "completo", "cita": "corre en dos servidores en un cuarto de la planta"},
+          {"tema": "Continuidad y tiempos", "resumen": "Falta saber cuánto tiempo pueden estar sin sistema", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Falta saber si hay requisitos regulatorios", "estado": "faltante", "cita": ""},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta plazo de contratación", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [],
+        "glosario": [
+          {"termino": "ERP", "en_lenguaje_comercial": "El sistema central donde la empresa lleva compras, inventario, producción y facturación."},
+          {"termino": "Data center", "en_lenguaje_comercial": "Edificio con luz, enfriamiento y seguridad garantizados donde viven los servidores."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Cuánto tiempo pueden estar sin sistema como máximo?", "por_que": "Define si basta con el servicio estándar o se necesita un arquitecto."}
+      }
+    },
+    {
+      "tras_frases": 6,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-DC-04", "cantidad": 1, "cita": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria", "dile_al_cliente": "Le damos servidores en nuestro centro de datos con la capacidad que hoy usa, sin que vuelva a comprar equipo."},
+          {"sku": "SIM-DC-07", "cantidad": 2, "cita": "No podemos estar más de dos horas sin sistema", "dile_al_cliente": "Tendrá una copia lista en otro centro de datos para seguir operando si algo falla."}
+        ],
+        "hechos": [
+          {"nombre": "rto_horas", "valor": "2", "cita": "No podemos estar más de dos horas sin sistema"},
+          {"nombre": "vcpu_total", "valor": "24", "cita": "Entre los dos servidores son 24 procesadores"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Los cortes de luz detienen el ERP; quieren dejar de comprar servidores", "estado": "completo", "cita": "Queremos dejar de comprar servidores, ya tienen siete años"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "24 procesadores y 48 GB entre dos servidores", "estado": "completo", "cita": "son 24 procesadores y unos 48 GB de memoria"},
+          {"tema": "Situación actual", "resumen": "Servidores de siete años en un cuarto de la planta", "estado": "completo", "cita": "ya tienen siete años"},
+          {"tema": "Continuidad y tiempos", "resumen": "Máximo 2 horas sin sistema", "estado": "completo", "cita": "No podemos estar más de dos horas sin sistema"},
+          {"tema": "Seguridad y regulación", "resumen": "Falta saber si hay requisitos regulatorios", "estado": "faltante", "cita": ""},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta plazo de contratación", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-DC-07", "pregunta": "¿Cuánto tiempo pueden estar sin sistema?", "cita": "No podemos estar más de dos horas sin sistema"},
+          {"sku": "SIM-DC-04", "pregunta": "¿Cuánta memoria y disco usan hoy?", "cita": "son 24 procesadores y unos 48 GB de memoria"}
+        ],
+        "glosario": [
+          {"termino": "ERP", "en_lenguaje_comercial": "El sistema central donde la empresa lleva compras, inventario, producción y facturación."},
+          {"termino": "RTO", "en_lenguaje_comercial": "Cuánto tiempo puede estar parado el negocio sin sistema. El cliente dijo 2 horas."},
+          {"termino": "vCPU", "en_lenguaje_comercial": "Procesadores virtuales: la potencia de cómputo que se renta."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Las sucursales se conectan al ERP?", "por_que": "Define si hace falta un enlace dedicado al centro de datos."}
+      }
+    },
+    {
+      "tras_frases": 13,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-DC-04", "cantidad": 1, "cita": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria", "dile_al_cliente": "Le damos servidores en nuestro centro de datos con la capacidad que hoy usa, sin que vuelva a comprar equipo."},
+          {"sku": "SIM-DC-07", "cantidad": 2, "cita": "No podemos estar más de dos horas sin sistema", "dile_al_cliente": "Tendrá una copia lista en otro centro de datos para seguir operando si algo falla."},
+          {"sku": "SIM-DC-08", "cantidad": 1, "cita": "las tres sucursales se conectan al ERP todos los días", "dile_al_cliente": "Sus sucursales siguen entrando al sistema por una conexión privada y estable."},
+          {"sku": "SIM-BK-01", "cantidad": 2, "cita": "Respaldamos a mano en un disco externo, son unos 2 TB", "dile_al_cliente": "Sus respaldos quedan en la nube y nadie los puede borrar, ni un virus."},
+          {"sku": "SIM-BK-03", "cantidad": 2, "cita": "Respaldamos a mano en un disco externo", "dile_al_cliente": "Los servidores se respaldan solos todos los días, sin depender de una persona."},
+          {"sku": "SIM-DC-09", "cantidad": null, "cita": "queremos mudar todo el site sin detener la planta", "dile_al_cliente": "Planeamos la mudanza completa sin parar la operación."}
+        ],
+        "hechos": [
+          {"nombre": "rto_horas", "valor": "2", "cita": "No podemos estar más de dos horas sin sistema"},
+          {"nombre": "vcpu_total", "valor": "24", "cita": "Entre los dos servidores son 24 procesadores"},
+          {"nombre": "sitios", "valor": "3", "cita": "las tres sucursales se conectan al ERP todos los días"},
+          {"nombre": "plazo_meses", "valor": "12", "cita": "Lo veríamos a un año, a 12 meses"}
+        ],
+        "fuera_de_catalogo": [
+          {"cita": "si nos pueden vender las UPS para la planta", "que_pide": "Equipos UPS (respaldo eléctrico) para la planta"}
+        ],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Los cortes de luz detienen el ERP; quieren dejar de comprar servidores", "estado": "completo", "cita": "Queremos dejar de comprar servidores, ya tienen siete años"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "24 procesadores, 48 GB, 2 TB de datos, 3 sucursales", "estado": "completo", "cita": "son unos 2 TB"},
+          {"tema": "Situación actual", "resumen": "Respaldos manuales en disco externo", "estado": "completo", "cita": "Respaldamos a mano en un disco externo"},
+          {"tema": "Continuidad y tiempos", "resumen": "Máximo 2 horas sin sistema", "estado": "completo", "cita": "No podemos estar más de dos horas sin sistema"},
+          {"tema": "Seguridad y regulación", "resumen": "No se mencionaron requisitos regulatorios", "estado": "faltante", "cita": ""},
+          {"tema": "Plazo y presupuesto", "resumen": "12 meses", "estado": "completo", "cita": "Lo veríamos a un año, a 12 meses"}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-DC-07", "pregunta": "¿Cuánto tiempo pueden estar sin sistema?", "cita": "No podemos estar más de dos horas sin sistema"},
+          {"sku": "SIM-DC-04", "pregunta": "¿Cuánta memoria y disco usan hoy?", "cita": "son 24 procesadores y unos 48 GB de memoria"},
+          {"sku": "SIM-DC-08", "pregunta": "¿Cuántas oficinas o sucursales se conectan?", "cita": "las tres sucursales se conectan al ERP"},
+          {"sku": "SIM-BK-01", "pregunta": "¿Cuántos TB respaldan?", "cita": "son unos 2 TB"},
+          {"sku": "SIM-BK-01", "pregunta": "¿Dónde están los respaldos hoy?", "cita": "Respaldamos a mano en un disco externo"}
+        ],
+        "glosario": [
+          {"termino": "ERP", "en_lenguaje_comercial": "El sistema central donde la empresa lleva compras, inventario, producción y facturación."},
+          {"termino": "RTO", "en_lenguaje_comercial": "Cuánto tiempo puede estar parado el negocio sin sistema. El cliente dijo 2 horas."},
+          {"termino": "DRaaS", "en_lenguaje_comercial": "Plan B en otro centro de datos: si el principal cae, el sistema se levanta ahí."},
+          {"termino": "Backup inmutable", "en_lenguaje_comercial": "Respaldo que nadie puede borrar ni cifrar, ni siquiera un virus."},
+          {"termino": "UPS", "en_lenguaje_comercial": "Baterías que mantienen encendidos los equipos durante un apagón (no está en nuestro catálogo)."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Cuántos datos pueden perder como máximo?", "por_que": "Completa el nivel de recuperación que necesita el plan B."}
+      }
+    }
+  ]
+}

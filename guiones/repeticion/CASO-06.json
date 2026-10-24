@@ -1,0 +1,65 @@
+{
+  "_nota": "Modo REPETICIÓN (sin IA). Respuestas PREGRABADAS escritas a mano con el formato de Claude (la cuenta aún no tenía crédito). Regrabar con: py -m app.grabar CASO-06",
+  "pasos": [
+    {
+      "tras_frases": 2,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-OCI-03", "cantidad": 1, "cita": "Tenemos una base de datos Oracle de 6 TB en servidores propios", "dile_al_cliente": "Llevamos su base de datos a la nube de Oracle antes de que venza su equipo."},
+          {"sku": "SIM-OCI-02", "cantidad": 1, "cita": "Tenemos una base de datos Oracle de 6 TB", "dile_al_cliente": "Nosotros nos encargamos de mantener y respaldar su base de datos."}
+        ],
+        "hechos": [
+          {"nombre": "oracle_tb", "valor": "6", "cita": "una base de datos Oracle de 6 TB"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Sacar una base Oracle de 6 TB antes de que venza el hardware", "estado": "completo", "cita": "el hardware vence el próximo año"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "6 TB", "estado": "completo", "cita": "una base de datos Oracle de 6 TB"},
+          {"tema": "Situación actual", "resumen": "Servidores propios", "estado": "incompleto", "cita": "en servidores propios"},
+          {"tema": "Continuidad y tiempos", "resumen": "Falta ventana de mantenimiento", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Falta", "estado": "faltante", "cita": ""},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-OCI-03", "pregunta": "¿Cuánto pesa la base?", "cita": "una base de datos Oracle de 6 TB"}
+        ],
+        "glosario": [
+          {"termino": "OCI", "en_lenguaje_comercial": "La nube de Oracle, pensada para bases de datos y sistemas Oracle."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Usan RAC o Data Guard?", "por_que": "Cambia el diseño de la migración."}
+      }
+    },
+    {
+      "tras_frases": 7,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-OCI-03", "cantidad": 1, "cita": "Tenemos una base de datos Oracle de 6 TB en servidores propios", "dile_al_cliente": "Llevamos su base de datos a la nube de Oracle antes de que venza su equipo."},
+          {"sku": "SIM-OCI-02", "cantidad": 1, "cita": "Tenemos una base de datos Oracle de 6 TB", "dile_al_cliente": "Nosotros nos encargamos de mantener y respaldar su base de datos."}
+        ],
+        "hechos": [
+          {"nombre": "oracle_tb", "valor": "6", "cita": "una base de datos Oracle de 6 TB"},
+          {"nombre": "oracle_rac_dataguard", "valor": "true", "cita": "usamos Data Guard para tener una copia"},
+          {"nombre": "pide_documento_tecnico", "valor": "true", "cita": "nuestro comité pide un diseño de arquitectura formal"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Sacar una base Oracle de 6 TB antes de que venza el hardware", "estado": "completo", "cita": "el hardware vence el próximo año"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "6 TB", "estado": "completo", "cita": "una base de datos Oracle de 6 TB"},
+          {"tema": "Situación actual", "resumen": "Data Guard; de ella dependen pólizas y siniestros", "estado": "completo", "cita": "dependen el sistema de pólizas y el de siniestros"},
+          {"tema": "Continuidad y tiempos", "resumen": "Falta ventana de mantenimiento", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Falta (aseguradora: confirmar requisitos)", "estado": "faltante", "cita": ""},
+          {"tema": "Plazo y presupuesto", "resumen": "Comité exige diseño formal", "estado": "incompleto", "cita": "nuestro comité pide un diseño de arquitectura formal antes de aprobar"}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-OCI-03", "pregunta": "¿Cuánto pesa la base?", "cita": "una base de datos Oracle de 6 TB"},
+          {"sku": "SIM-OCI-02", "pregunta": "¿Qué sistemas dependen de ella?", "cita": "dependen el sistema de pólizas y el de siniestros"}
+        ],
+        "glosario": [
+          {"termino": "OCI", "en_lenguaje_comercial": "La nube de Oracle, pensada para bases de datos y sistemas Oracle."},
+          {"termino": "Data Guard", "en_lenguaje_comercial": "Una copia de la base de datos siempre al día, lista para entrar si la principal falla."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Qué versión de Oracle?", "por_que": "El arquitecto la necesitará para el diseño."}
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "_nota": "Guiones de llamada SIMULADA (datos ficticios). Se reproducen una línea cada 3 segundos en el modo Simulación y en el modo Repetición.",
+  "CASO-02": [
+    {"hablante": "vendedor", "texto": "Buenas tardes, gracias por recibirnos. Cuéntenme qué está pasando."},
+    {"hablante": "cliente", "texto": "Nuestro ERP corre en dos servidores en un cuarto de la planta. Se nos fue la luz dos veces este año y paramos la operación."},
+    {"hablante": "vendedor", "texto": "Entiendo. ¿Cuánto tiempo pueden estar sin sistema como máximo?"},
+    {"hablante": "cliente", "texto": "No podemos estar más de dos horas sin sistema, cada hora parada nos cuesta mucho."},
+    {"hablante": "vendedor", "texto": "¿Y saben qué recursos usan esos servidores?"},
+    {"hablante": "cliente", "texto": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria. Queremos dejar de comprar servidores, ya tienen siete años."},
+    {"hablante": "vendedor", "texto": "¿Las sucursales se conectan al ERP?"},
+    {"hablante": "cliente", "texto": "Sí, las tres sucursales se conectan al ERP todos los días."},
+    {"hablante": "vendedor", "texto": "¿Y cómo respaldan hoy la información?"},
+    {"hablante": "cliente", "texto": "Respaldamos a mano en un disco externo, son unos 2 TB."},
+    {"hablante": "cliente", "texto": "Y si nos pueden vender las UPS para la planta, también nos interesa."},
+    {"hablante": "vendedor", "texto": "¿A qué plazo les interesaría contratar?"},
+    {"hablante": "cliente", "texto": "Lo veríamos a un año, a 12 meses."}
+  ],
+  "CASO-07": [
+    {"hablante": "vendedor", "texto": "Hola, ¿en qué les puedo ayudar?"},
+    {"hablante": "cliente", "texto": "Necesitamos respaldar los archivos de nuestros clientes; el SAT nos pide guardarlos 5 años."},
+    {"hablante": "vendedor", "texto": "¿Cuánta información es y dónde está hoy?"},
+    {"hablante": "cliente", "texto": "Son como 2 TB de archivos de clientes, están en una computadora de la oficina."},
+    {"hablante": "vendedor", "texto": "¿Usan Microsoft 365?"},
+    {"hablante": "cliente", "texto": "Sí, los 12 usamos Microsoft 365 para el correo."},
+    {"hablante": "vendedor", "texto": "¿Manejan datos de salud, datos sensibles o pagos con tarjeta?"},
+    {"hablante": "cliente", "texto": "No, nada de eso, solo información fiscal y contable."},
+    {"hablante": "vendedor", "texto": "¿A qué plazo lo contratarían?"},
+    {"hablante": "cliente", "texto": "A 12 meses está bien."}
+  ],
+  "CASO-06": [
+    {"hablante": "vendedor", "texto": "Buenos días, ¿qué necesitan resolver?"},
+    {"hablante": "cliente", "texto": "Tenemos una base de datos Oracle de 6 TB en servidores propios y el hardware vence el próximo año."},
+    {"hablante": "vendedor", "texto": "¿Usan RAC o Data Guard?"},
+    {"hablante": "cliente", "texto": "Sí, usamos Data Guard para tener una copia en otro cuarto."},
+    {"hablante": "cliente", "texto": "De esa base dependen el sistema de pólizas y el de siniestros."},
+    {"hablante": "vendedor", "texto": "¿Necesitan algún documento técnico para aprobarlo?"},
+    {"hablante": "cliente", "texto": "Sí, nuestro comité pide un diseño de arquitectura formal antes de aprobar."}
+  ]
+}
