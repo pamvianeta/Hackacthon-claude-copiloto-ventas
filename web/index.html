@@ -4,120 +4,153 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Copiloto Comercial</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%231f5fbf'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%2310069F'/><circle cx='8' cy='8' r='3' fill='%2300B8FF'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Work+Sans:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="/web/estilos.css">
 </head>
 <body>
 <header class="barra">
-  <div>
+  <div class="marca">
+    <span class="marca-punto"></span>
     <strong>Copiloto Comercial</strong>
-    <span class="chip gris">DATOS SIMULADOS</span>
+    <span class="chip claro">Datos simulados</span>
   </div>
   <div class="barra-der">
     <span id="modo" class="chip modo" hidden></span>
-    <button id="ver-aprendido" class="enlace">Lo que ha aprendido</button>
+    <button id="ver-aprendido" class="boton fantasma claro">Lo que ha aprendido</button>
   </div>
 </header>
 <div id="aviso" class="aviso" hidden></div>
 
 <main>
-  <!-- 0. Preparar la reunión -->
-  <section id="preparar" class="tarjeta">
-    <h2>Preparar la reunión</h2>
-    <label class="campo">Expediente del cliente
+  <!-- Preparar la reunión -->
+  <section id="preparar" class="preparar tarjeta">
+    <h1>Preparar la reunión</h1>
+    <p class="tenue">Elige el expediente del cliente y cómo entra la llamada.</p>
+
+    <label class="campo"><span class="paso">1</span> Expediente del cliente
       <select id="cliente"></select>
     </label>
+
     <fieldset class="campo">
-      <legend>¿Cómo entra la llamada?</legend>
-      <label class="opcion"><input type="radio" name="modo" value="microfono"> 🎙 Escuchar micrófono</label>
-      <label class="opcion"><input type="radio" name="modo" value="simulacion" checked> ▶ Simular llamada (con IA)</label>
-      <label class="opcion"><input type="radio" name="modo" value="repeticion"> ⟲ Repetición (sin IA, sin internet)</label>
+      <legend><span class="paso">2</span> ¿Cómo entra la llamada?</legend>
+      <div class="modos">
+        <label class="opcion"><input type="radio" name="modo" value="microfono">
+          <span class="op-icono">🎙</span><span class="op-titulo">Escuchar micrófono</span>
+          <span class="op-texto">Llamada real; transcribe en vivo con IA</span></label>
+        <label class="opcion"><input type="radio" name="modo" value="simulacion" checked>
+          <span class="op-icono">▶</span><span class="op-titulo">Simular llamada</span>
+          <span class="op-texto">Guion de ejemplo, analizado con IA</span></label>
+        <label class="opcion"><input type="radio" name="modo" value="repeticion">
+          <span class="op-icono">⟲</span><span class="op-titulo">Repetición</span>
+          <span class="op-texto">Sin IA y sin internet: respaldo para demos</span></label>
+      </div>
     </fieldset>
+
     <label id="consentimiento" class="consentimiento" hidden>
       <input type="checkbox" id="acepto">
-      Avisé al cliente que la llamada se transcribe para tomar notas y aceptó.
-      La transcripción es de uso interno.
+      <span>Avisé al cliente que la llamada se transcribe para tomar notas y aceptó.
+        La transcripción es de uso interno.</span>
     </label>
-    <p id="sin-soporte" class="mal" hidden>Este navegador no reconoce voz. Usa <b>Google Chrome</b> en
+    <p id="sin-soporte" class="alerta" hidden>Este navegador no reconoce voz. Usa <b>Google Chrome</b> en
       http://localhost:8000, o elige «Simular llamada».</p>
-    <button id="empezar" class="boton grande">Empezar sesión</button>
+    <button id="empezar" class="boton primario grande">Empezar sesión</button>
   </section>
 
   <div id="panel" hidden>
-    <!-- 1. Expediente -->
-    <section id="expediente" class="tarjeta expediente"></section>
-
-    <!-- Controles de entrada -->
-    <section class="tarjeta controles">
+    <!-- Controles -->
+    <section class="controles tarjeta">
       <div id="ctl-mic" hidden>
-        <button id="mic" class="boton grande">🎙 Iniciar escucha</button>
+        <button id="mic" class="boton primario grande">🎙 Iniciar escucha</button>
         <span id="escuchando" class="escuchando" hidden><i class="punto"></i> Escuchando…</span>
-        <div class="hablante">Quién habla:
-          <button data-h="auto" class="seg activo" title="La IA lo detecta por lo que se dice">Automático</button>
-          <button data-h="cliente" class="seg">Cliente</button>
-          <button data-h="vendedor" class="seg">Vendedor</button>
+        <div class="hablante"><span class="tenue">Quién habla</span>
+          <div class="segmentos">
+            <button data-h="auto" class="seg activo" title="La IA lo detecta por lo que se dice">Automático</button>
+            <button data-h="cliente" class="seg">Cliente</button>
+            <button data-h="vendedor" class="seg">Vendedor</button>
+          </div>
         </div>
       </div>
       <div id="ctl-sim" hidden>
-        <button id="sim" class="boton grande">▶ Reproducir llamada</button>
+        <button id="sim" class="boton primario grande">▶ Reproducir llamada</button>
         <span class="tenue">Una línea cada 3 segundos</span>
       </div>
-      <span id="analizando" class="tenue" hidden>Analizando…</span>
-      <button id="cerrar" class="boton secundario">Cerrar sesión y generar propuesta</button>
+      <div class="controles-der">
+        <span id="analizando" class="analizando" hidden><i class="giro"></i> Analizando…</span>
+        <button id="cerrar" class="boton secundario">Cerrar sesión y generar propuesta</button>
+      </div>
     </section>
 
-    <!-- 4. Semáforo -->
-    <section id="semaforo" class="tarjeta semaforo amarillo">
-      <div class="luz"><span id="sem-etiqueta">Faltan datos</span></div>
-      <div id="sem-detalle"></div>
-    </section>
+    <!-- Franja superior: expediente · semáforo · siguiente pregunta -->
+    <div class="franja">
+      <section id="expediente" class="tarjeta expediente"></section>
 
-    <!-- 5. Siguiente pregunta -->
-    <section class="tarjeta pregunta">
-      <h3>Siguiente pregunta</h3>
-      <p id="pregunta" class="pregunta-texto tenue">Aparecerá cuando el cliente empiece a hablar.</p>
-      <p id="pregunta-porque" class="tenue"></p>
-    </section>
+      <section id="semaforo" class="tarjeta semaforo amarillo">
+        <div class="sem-cabeza">
+          <div class="luces" aria-hidden="true"><i class="l-verde"></i><i class="l-amarillo"></i><i class="l-rojo"></i></div>
+          <div>
+            <div class="eyebrow">Triaje</div>
+            <div id="sem-etiqueta" class="sem-etiqueta">Faltan datos</div>
+          </div>
+        </div>
+        <div id="sem-detalle"></div>
+      </section>
 
-    <!-- 6. Productos sugeridos + fuera de catálogo -->
-    <section class="tarjeta">
-      <h3>Productos sugeridos <span class="tenue">· confirma con ✓ para que entren a la propuesta</span></h3>
-      <div id="productos"><p class="tenue">Sin sugerencias todavía.</p></div>
-      <div id="fuera"></div>
-      <div id="bloqueados"></div>
-    </section>
+      <section class="tarjeta pregunta">
+        <div class="eyebrow">Siguiente pregunta</div>
+        <p id="pregunta" class="pregunta-texto tenue">Aparecerá cuando el cliente empiece a hablar.</p>
+        <p id="pregunta-porque" class="tenue chico"></p>
+      </section>
+    </div>
 
-    <!-- 3. Notas -->
-    <section class="tarjeta">
-      <h3>Notas <span id="cobertura" class="tenue"></span></h3>
-      <div id="notas" class="notas"></div>
-    </section>
+    <!-- Sugerencias y notas, lado a lado -->
+    <div class="rejilla">
+      <section class="tarjeta">
+        <div class="titulo-seccion">
+          <h2>Productos sugeridos</h2>
+          <span class="tenue chico">Confirma con ✓ lo que entra a la propuesta</span>
+        </div>
+        <div id="productos" class="productos"><p class="vacio">Sin sugerencias todavía.</p></div>
+        <div id="fuera"></div>
+        <div id="bloqueados"></div>
+      </section>
 
-    <!-- 2. Transcripción -->
-    <section class="tarjeta">
-      <h3>Transcripción en vivo</h3>
-      <div id="transcripcion" class="transcripcion"></div>
-      <p id="provisional" class="provisional"></p>
-    </section>
+      <section class="tarjeta">
+        <div class="titulo-seccion">
+          <h2>Notas</h2>
+          <span id="cobertura" class="tenue chico"></span>
+        </div>
+        <div id="barra-cobertura" class="progreso" hidden><i></i></div>
+        <div id="notas" class="notas"><p class="vacio">Las notas se llenan solas durante la llamada.</p></div>
+      </section>
+    </div>
 
-    <!-- 7. Glosario -->
-    <section class="tarjeta">
-      <h3>Glosario técnico ↔ comercial</h3>
-      <dl id="glosario" class="glosario"></dl>
-    </section>
+    <!-- Transcripción y glosario, lado a lado -->
+    <div class="rejilla">
+      <section class="tarjeta">
+        <div class="titulo-seccion"><h2>Transcripción en vivo</h2></div>
+        <div id="transcripcion" class="transcripcion"></div>
+        <p id="provisional" class="provisional"></p>
+      </section>
+      <section class="tarjeta">
+        <div class="titulo-seccion"><h2>Glosario técnico ↔ comercial</h2></div>
+        <dl id="glosario" class="glosario"></dl>
+      </section>
+    </div>
   </div>
 
-  <!-- 8. Resultado: tablero de impacto + propuesta -->
+  <!-- Resultado -->
   <section id="resultado" hidden>
     <section class="tarjeta">
-      <h2>Tablero de impacto</h2>
+      <div class="titulo-seccion"><h2>Tablero de impacto</h2><span class="tenue chico">Esta sesión contra la línea base del reto</span></div>
       <div id="impacto" class="impacto"></div>
     </section>
     <section class="tarjeta">
-      <h2>Borrador de propuesta económica</h2>
+      <div class="titulo-seccion"><h2>Borrador de propuesta económica</h2></div>
       <div id="propuesta"></div>
       <div id="archivos" class="archivos"></div>
-      <button class="boton" onclick="location.reload()">Nueva sesión</button>
+      <button class="boton fantasma" onclick="location.reload()">Nueva sesión</button>
     </section>
   </section>
 </main>
@@ -127,7 +160,7 @@
   <p class="tenue">Frases del cliente confirmadas (✓) o descartadas (✗) por vendedores. Las que tienen más ✓ que ✗
     se usan como ejemplos para la IA (máximo 40).</p>
   <div id="tabla-aprendido"></div>
-  <button class="boton" onclick="this.closest('dialog').close()">Cerrar</button>
+  <button class="boton primario" onclick="this.closest('dialog').close()">Cerrar</button>
 </dialog>
 
 <script src="/web/app.js"></script>

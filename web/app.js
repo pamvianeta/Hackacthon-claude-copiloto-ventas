@@ -63,10 +63,12 @@ const manejar = {
     $("#panel").hidden = false;
     const c = d.cliente;
     $("#expediente").innerHTML = `
+      <div class="eyebrow">Expediente · ${esc(c.id)}</div>
       <div class="empresa">${esc(c.empresa)}</div>
-      <div class="tenue">${esc(c.industria)} · ${esc(c.ciudad)} · ${esc(c.empleados)} empleados · ${esc(c.id)}</div>
+      <div class="datos"><span class="dato">${esc(c.industria)}</span><span class="dato">${esc(c.ciudad)}</span>
+        <span class="dato">${esc(c.empleados)} empleados</span></div>
       <blockquote>«${esc(c.mensaje_inicial)}»</blockquote>
-      <p class="tenue"><b>Por confirmar:</b> ${esc(c.informacion_que_falta)}</p>`;
+      <div class="chico tenue"><b>Por confirmar:</b> ${esc(c.informacion_que_falta)}</div>`;
     $("#ctl-mic").hidden = d.modo !== "microfono";
     $("#ctl-sim").hidden = d.modo === "microfono";
   },
@@ -102,9 +104,8 @@ const manejar = {
     s.className = `tarjeta semaforo ${d.estado}`;
     $("#sem-etiqueta").textContent = d.etiqueta;
     const reglas = d.reglas_activadas.map((r) => `
-      <div class="regla"><b>${esc(r.regla)}</b> ${esc(r.texto)}
-        ${r.cita ? `<div class="cita">Cliente: «${esc(r.cita)}»</div>` : ""}
-        ${r.detalle ? `<div class="tenue">${esc(r.detalle)}</div>` : ""}</div>`).join("");
+      <div class="regla"><span class="regla-id">${esc(r.regla)}</span>${esc(r.texto)}
+        ${r.cita ? `<div class="cita">Cliente: «${esc(r.cita)}»</div>` : ""}</div>`).join("");
     const falt = d.faltantes.filter((f) => f.bloquea);
     const rc = d.resumen_cotizacion;
     s.querySelector("#sem-detalle").innerHTML = `
@@ -112,20 +113,23 @@ const manejar = {
       ${d.estado !== "rojo" && falt.length ? `<div>Faltan ${falt.length} dato(s) para cotizar:
          <ul>${falt.map((f) => `<li>${esc(f.pregunta)}</li>`).join("")}</ul></div>` : ""}
       ${d.estado === "verde" ? "<div>El vendedor puede cotizar solo: no hace falta arquitecto.</div>" : ""}
-      <div class="tenue">Estimado: ${dinero(rc.mensual)}/mes + ${dinero(rc.cargos_unicos)} de cargos únicos (sin IVA)
-        · ${d.lineas_estandar} línea(s) estándar · ${d.lineas_a_la_medida} con arquitecto
-        ${rc.requiere_autorizacion_gerente ? " · <b>requiere autorización del gerente</b>" : ""}</div>`;
+      <div class="resumen">Estimado: <b>${dinero(rc.mensual)}/mes</b> + ${dinero(rc.cargos_unicos)} único (sin IVA)
+        · ${d.lineas_estandar} estándar · ${d.lineas_a_la_medida} con arquitecto
+        ${rc.requiere_autorizacion_gerente ? " · <b class='mal'>requiere autorización del gerente</b>" : ""}</div>`;
     s.classList.add("nuevo");
     setTimeout(() => s.classList.remove("nuevo"), 2000);
     pintarFuera(d.fuera_de_catalogo);
   },
   notes_update(d) {
-    const iconos = { completo: "✓ completo", incompleto: "◐ incompleto", faltante: "○ faltante" };
+    const iconos = { completo: "✓", incompleto: "◐", faltante: "" };
+    if (!d.notas.length) return;
     pintar("notas", $("#notas"), d.notas, (n) => n.tema + n.estado + n.resumen, (n) => `
-      <div class="nota"><span class="estado ${esc(n.estado)}">${iconos[n.estado] || esc(n.estado)}</span>
-        <b>${esc(n.tema)}:</b> ${esc(n.resumen)}</div>`);
+      <div class="nota ${esc(n.estado)}" title="${esc(n.estado)}"><span class="icono">${iconos[n.estado] ?? ""}</span>
+        <div><div class="tema">${esc(n.tema)}</div><div class="resumen-nota">${esc(n.resumen)}</div></div></div>`);
     const c = d.cobertura;
-    $("#cobertura").textContent = c.total ? `· preguntas clave cubiertas: ${c.respondidas} de ${c.total} (${c.pct}%)` : "";
+    $("#cobertura").textContent = c.total ? `Preguntas clave: ${c.respondidas} de ${c.total} (${c.pct}%)` : "";
+    $("#barra-cobertura").hidden = !c.total;
+    $("#barra-cobertura i").style.width = `${c.pct}%`;
   },
   suggested_question(d) {
     const p = $("#pregunta");
@@ -144,23 +148,26 @@ const manejar = {
   },
   suggestion(d) {
     if (!d.productos.length) return;
+    const claseTipo = { "estándar": "estandar", configurable: "configurable", "a la medida": "medida" };
     pintar("productos", $("#productos"), d.productos, (p) => p.sku + p.estado, (p) => `
       <div class="producto ${esc(p.estado)}">
-        <div class="nombre">${esc(p.nombre)}</div>
-        <div class="sku">${esc(p.sku)} · ${esc(p.tipo)}${p.cantidad != null ? ` · cantidad: ${esc(p.cantidad)}` : ""}</div>
-        <div class="cita">Cliente: «${esc(p.cita)}»</div>
-        <div class="dile"><b>Dile al cliente:</b> ${esc(p.dile_al_cliente)}</div>
-        <div class="acciones">
-          <button class="ok ${p.estado === "confirmado" ? "activo" : ""}" data-sku="${esc(p.sku)}" data-ok="1">✓ Correcto</button>
-          <button class="no ${p.estado === "descartado" ? "activo" : ""}" data-sku="${esc(p.sku)}" data-ok="0">✗ No aplica</button>
+        <div class="fila">
+          <div><div class="nombre">${esc(p.nombre)} <span class="tipo ${claseTipo[p.tipo] || ""}">${esc(p.tipo)}</span></div>
+            <div class="sku">${esc(p.sku)}${p.cantidad != null ? ` · cantidad: ${esc(p.cantidad)}` : ""}</div></div>
+          <div class="acciones">
+            <button class="ok ${p.estado === "confirmado" ? "activo" : ""}" data-sku="${esc(p.sku)}" data-ok="1" title="Correcto: entra a la propuesta">✓ Correcto</button>
+            <button class="no ${p.estado === "descartado" ? "activo" : ""}" data-sku="${esc(p.sku)}" data-ok="0" title="No aplica">✗</button>
+          </div>
         </div>
+        <div class="cita">«${esc(p.cita)}»</div>
+        <div class="dile"><b>Dile al cliente:</b> ${esc(p.dile_al_cliente)}</div>
       </div>`);
   },
   feedback() {},
   blocked(d) {
     const b = $("#bloqueados");
     if (!d.total) { b.innerHTML = ""; return; }
-    b.innerHTML = `<details class="bloq"><summary>🛡 ${d.total} sugerencia(s) de la IA bloqueada(s) por no tener respaldo</summary>
+    b.innerHTML = `<details class="bloq"><summary><span class="contador">${d.total}</span> sugerencia(s) de la IA bloqueada(s) por no tener respaldo en la llamada</summary>
       <ul>${d.items.map((x) => `<li>${esc(x.item.sku || x.item.nombre || x.item.que_pide || x.tipo)}:
         ${esc(x.motivo)}${x.item.cita ? ` — <span class="cita">«${esc(x.item.cita)}»</span>` : ""}</li>`).join("")}</ul>
       </details>`;
@@ -198,7 +205,7 @@ function pintarResultado(d) {
     ["Sugerencias bloqueadas", i.sugerencias_bloqueadas, "Sin respaldo en la llamada o en el catálogo"],
   ];
   $("#impacto").innerHTML = metricas.map(([t, v, a]) =>
-    `<div class="metrica"><div class="tenue">${esc(t)}</div><div class="valor">${esc(v)}</div><div class="antes">${esc(a)}</div></div>`).join("");
+    `<div class="metrica"><div class="tenue">${esc(t)}</div><div class="valor${String(v).length > 10 ? " texto" : ""}">${esc(v)}</div><div class="antes">${esc(a)}</div></div>`).join("");
 
   const c = d.cotizacion;
   if (!d.confirmados.length) {
@@ -228,7 +235,7 @@ function pintarResultado(d) {
   const a = d.archivos || {};
   const etiquetas = { propuesta_docx: "📄 Propuesta (Word)", propuesta_pdf: "📄 Propuesta (PDF)", brief_docx: "📋 Brief para arquitecto (Word)" };
   $("#archivos").innerHTML = Object.entries(a).filter(([, v]) => v).map(([k, v]) =>
-    `<a class="boton secundario" href="/salidas/${encodeURIComponent(v)}">${etiquetas[k] || esc(k)}</a>`).join("");
+    `<a class="boton ${k === "propuesta_docx" ? "primario" : "secundario"}" href="/salidas/${encodeURIComponent(v)}">${etiquetas[k] || esc(k)}</a>`).join("");
 }
 
 // ------------------------------------------------------------------ micrófono (Web Speech API)
