@@ -8,7 +8,7 @@ const dinero = (n) => (n == null ? "—" : n.toLocaleString("es-MX", { style: "c
 const MODOS = { microfono: "🎙 Micrófono", simulacion: "▶ Simulación (con IA)", repeticion: "⟲ Repetición (sin IA)" };
 
 const st = {
-  ws: null, modo: null, hablante: "cliente", analizando: false,
+  ws: null, modo: null, hablante: "auto", analizando: false,
   vistos: {},            // por sección: claves ya mostradas (para resaltar lo nuevo)
   ultimaFeedback: {},
 };
@@ -52,7 +52,10 @@ function conectar() {
   };
   st.ws.onclose = () => aviso("Se perdió la conexión con el servidor. Recarga la página.", true);
 }
-const enviar = (o) => st.ws && st.ws.readyState === 1 && st.ws.send(JSON.stringify(o));
+function enviar(o) {
+  if (st.ws && st.ws.readyState === 1) return st.ws.send(JSON.stringify(o));
+  aviso("Todavía no hay conexión con el servidor. Espera un segundo e inténtalo de nuevo (o recarga la página).", true);
+}
 
 const manejar = {
   sesion(d) {
@@ -77,11 +80,22 @@ const manejar = {
   transcript(d) {
     const f = d.frase;
     const div = document.createElement("div");
-    div.className = `frase ${f.hablante} nuevo`;
-    div.innerHTML = `<span class="quien">${f.hablante === "vendedor" ? "Vendedor" : "Cliente"}</span>${esc(f.texto)}`;
+    div.className = `frase ${f.auto ? "auto" : f.hablante} nuevo`;
+    div.dataset.indice = d.indice;
+    div.innerHTML = `<span class="quien">${f.auto ? "Detectando…" : f.hablante === "vendedor" ? "Vendedor" : "Cliente"}</span>${esc(f.texto)}`;
     const t = $("#transcripcion");
     t.appendChild(div);
     t.scrollTop = t.scrollHeight;
+  },
+  speakers(d) {
+    d.cambios.forEach((c) => {
+      const div = document.querySelector(`.frase[data-indice="${c.indice}"]`);
+      if (!div) return;
+      div.className = `frase ${c.hablante}`;
+      div.querySelector(".quien").textContent = c.hablante === "vendedor" ? "Vendedor (IA)" : "Cliente (IA)";
+      void div.offsetWidth;
+      div.classList.add("nuevo");
+    });
   },
   triage(d) {
     const s = $("#semaforo");
@@ -269,10 +283,11 @@ const mic = {
     $("#provisional").textContent = "";
   },
 
-  /** Envía lo acumulado; si hay un análisis en curso, espera (salvo que se fuerce). */
+  /** Envía lo acumulado; si hay un análisis en curso, espera (salvo que se fuerce).
+   *  Cada frase va por separado para que la IA pueda decir quién dijo cada una. */
   enviarPendiente(forzar = false) {
     if (!this.buffer.length || (st.analizando && !forzar)) return;
-    enviar({ tipo: "frase", hablante: st.hablante, texto: this.buffer.join(" ") });
+    this.buffer.forEach((texto) => enviar({ tipo: "frase", hablante: st.hablante, texto }));
     this.buffer = [];
   },
 };

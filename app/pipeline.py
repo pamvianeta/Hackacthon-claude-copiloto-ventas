@@ -77,6 +77,7 @@ def analizar(frases: list[dict], modo: str, caso: str | None = None, cliente: di
         "notas": ver["notas"],
         "glosario": ver["glosario"],
         "bloqueados": ver["bloqueados"],
+        "hablantes": ver["hablantes"],
         "siguiente_pregunta": siguiente,
         "cobertura": {"respondidas": len(respondidas), "total": len(claves),
                       "pct": round(100 * len(respondidas) / len(claves)) if claves else 0},

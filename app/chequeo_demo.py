@@ -10,7 +10,7 @@ from app.catalogo import obtener
 from app.pipeline import analizar, llamadas
 from app.validador import validar_todo
 
-ESPERADO = {"CASO-02": "rojo", "CASO-07": "verde", "CASO-06": "rojo"}
+ESPERADO = {"CASO-01": "rojo", "CASO-02": "rojo", "CASO-07": "verde", "CASO-06": "rojo"}
 
 
 def paso(nombre, fn):

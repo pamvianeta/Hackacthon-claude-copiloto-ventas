@@ -1,5 +1,19 @@
 {
   "_nota": "Guiones de llamada SIMULADA (datos ficticios). Se reproducen una línea cada 3 segundos en el modo Simulación y en el modo Repetición.",
+  "CASO-01": [
+    {"hablante": "vendedor", "texto": "Hola, gracias por la llamada. Cuénteme qué les pasó."},
+    {"hablante": "cliente", "texto": "Usamos correos de Gmail personales y el mes pasado una recepcionista abrió un archivo y se cifraron las computadoras. Queremos algo más seguro."},
+    {"hablante": "vendedor", "texto": "Lamento escuchar eso. ¿Cuántas personas y cuántas computadoras tienen?"},
+    {"hablante": "cliente", "texto": "Somos 25 personas en la clínica y tenemos 18 computadoras."},
+    {"hablante": "vendedor", "texto": "¿Cómo respaldan hoy la información?"},
+    {"hablante": "cliente", "texto": "La verdad no respaldamos nada, todo está en las computadoras y en el correo."},
+    {"hablante": "vendedor", "texto": "¿Quieren conservar los correos que ya tienen en Gmail?"},
+    {"hablante": "cliente", "texto": "Sí, queremos pasar los correos de las 25 cuentas sin perder nada."},
+    {"hablante": "vendedor", "texto": "Una pregunta importante: ¿guardan expedientes o datos de salud de sus pacientes?"},
+    {"hablante": "cliente", "texto": "Sí, guardamos los expedientes clínicos de los pacientes y las radiografías en las computadoras."},
+    {"hablante": "vendedor", "texto": "Entendido. ¿A qué plazo les interesaría contratar?"},
+    {"hablante": "cliente", "texto": "Lo veríamos a 24 meses."}
+  ],
   "CASO-02": [
     {"hablante": "vendedor", "texto": "Buenas tardes, gracias por recibirnos. Cuéntenme qué está pasando."},
     {"hablante": "cliente", "texto": "Nuestro ERP corre en dos servidores en un cuarto de la planta. Se nos fue la luz dos veces este año y paramos la operación."},

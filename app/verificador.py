@@ -128,5 +128,7 @@ def verificar(extraccion: dict, frases: list[dict], catalogo, reglas: dict) -> d
         "preguntas_respondidas": respondidas,
         "glosario": extraccion.get("glosario", []),
         "siguiente_pregunta_ia": extraccion.get("siguiente_pregunta"),
+        "hablantes": [h for h in extraccion.get("hablantes", [])
+                      if h.get("hablante") in ("cliente", "vendedor") and isinstance(h.get("linea"), int)],
         "bloqueados": bloqueados,
     }

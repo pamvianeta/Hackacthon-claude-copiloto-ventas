@@ -73,6 +73,8 @@ def test_simulacion_cae_a_repeticion_y_entrega_propuesta(cliente):
 @pytest.mark.parametrize("caso, confirmar, estado, mensual, archivos", [
     ("CASO-07", ["SIM-BK-01", "SIM-BK-05", "SIM-BK-02"], "verde", 5728.0, {"propuesta_docx"}),
     ("CASO-06", ["SIM-OCI-03", "SIM-OCI-02"], "rojo", 0.0, {"propuesta_docx", "brief_docx"}),
+    ("CASO-01", ["SIM-M365-03", "SIM-BK-04", "SIM-BK-02", "SIM-M365-06"], "rojo", 3263.25,
+     {"propuesta_docx", "brief_docx"}),
 ])
 def test_repeticion_de_punta_a_punta(cliente, caso, confirmar, estado, mensual, archivos):
     with cliente.websocket_connect("/ws") as ws:
@@ -98,6 +100,31 @@ def test_microfono_sin_ia_avisa_error_y_guarda_frases(cliente):
         esperar(ws, lambda m: m["evento"] == "transcript")
         m, _ = esperar(ws, lambda m: m["evento"] == "error")
         assert "IA no está disponible" in m["datos"]["mensaje"]
+
+
+def test_microfono_automatico_la_ia_etiqueta_quien_habla(cliente, monkeypatch):
+    vistas = []
+
+    def ia_falsa(frases, *a, **k):
+        vistas.append([f.get("auto") for f in frases])
+        return {"productos": [], "hechos": [], "fuera_de_catalogo": [], "notas": [], "preguntas_respondidas": [],
+                "glosario": [], "siguiente_pregunta": {"texto": "", "por_que": ""},
+                "hablantes": [{"linea": 1, "hablante": "vendedor"}, {"linea": 2, "hablante": "cliente"},
+                              {"linea": 99, "hablante": "cliente"}]}  # renglón inexistente: se ignora
+    monkeypatch.setattr(extraccion, "extraer", ia_falsa)
+    with cliente.websocket_connect("/ws") as ws:
+        ws.send_json({"tipo": "iniciar", "cliente_id": "CASO-05", "modo": "microfono"})
+        esperar(ws, lambda m: m["evento"] == "sesion")
+        ws.send_json({"tipo": "frase", "hablante": "auto", "texto": "¿Cuántos mensajes reciben al día?"})
+        ws.send_json({"tipo": "frase", "hablante": "auto", "texto": "Como trescientos WhatsApps diarios"})
+        m, vistos = esperar(ws, lambda m: m["evento"] == "speakers" and
+                            {c["indice"] for c in m["datos"]["cambios"]} >= {1})
+        primera = next(v for v in vistos if v["evento"] == "transcript")
+        assert primera["datos"]["frase"]["auto"] is True
+        etiquetas = {c["indice"]: c["hablante"] for v in vistos if v["evento"] == "speakers"
+                     for c in v["datos"]["cambios"]}
+        assert etiquetas == {0: "vendedor", 1: "cliente"}
+    assert vistas[0][0] is True  # Claude recibió la frase sin etiqueta
 
 
 def test_descartar_quita_el_producto_del_triaje(cliente):

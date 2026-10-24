@@ -82,6 +82,13 @@ def test_esquema_estricto_y_sin_precios_en_el_prompt():
     assert "7900" not in texto  # precio de SIM-DC-01
 
 
+def test_prompt_marca_las_frases_sin_hablante():
+    texto = extraccion.mensaje_usuario([{"hablante": "cliente", "texto": "hola", "auto": True},
+                                        {"hablante": "vendedor", "texto": "buenas"}], None, [])
+    assert "[1] [¿?] hola" in texto and "[2] [Vendedor] buenas" in texto
+    assert "hablantes" in extraccion.esquema(CAT, REGLAS)["properties"]
+
+
 def test_extraer_con_api_simulada(monkeypatch):
     respuesta = {"productos": [{"sku": "SIM-BK-01", "cantidad": 2, "cita": "son unos 2 TB", "dile_al_cliente": "x"}],
                  "hechos": [], "fuera_de_catalogo": [], "notas": [], "preguntas_respondidas": [], "glosario": [],
@@ -136,6 +143,23 @@ def test_repeticion_caso07_verde_y_caso06_rojo():
     assert r7["cotizacion"]["mensual"]["subtotal"] == 5728.0
     r6 = analizar(llamadas()["CASO-06"], "repeticion", "CASO-06")
     assert {"ESC-08", "ESC-10"} <= {a["regla"] for a in r6["triaje"]["reglas_activadas"]}
+
+
+def test_repeticion_caso01_parece_estandar_hasta_que_aparecen_datos_de_salud():
+    guion = llamadas()["CASO-01"]
+    antes = analizar(guion[:8], "repeticion", "CASO-01")
+    assert antes["triaje"]["estado"] == "amarillo"
+    assert "salud" in antes["siguiente_pregunta"]["texto"] and antes["siguiente_pregunta"]["fuente"] == "catálogo"
+    despues = analizar(guion[:10], "repeticion", "CASO-01")
+    assert despues["triaje"]["estado"] == "rojo"
+    esc04 = next(a for a in despues["triaje"]["reglas_activadas"] if a["regla"] == "ESC-04")
+    assert esc04["cita"] == "guardamos los expedientes clínicos de los pacientes"
+    final = analizar(guion, "repeticion", "CASO-01")
+    c = final["cotizacion"]
+    assert final["bloqueados"] == [] and c["plazo_meses"] == 24
+    assert c["renglones_pendientes_arquitecto"] == ["SIM-M365-03"]
+    # (18 × 95 + 25 × 69) × 0.95 por plazo de 24 meses; migración 25 × 350 sin descuento
+    assert c["mensual"]["subtotal"] == 3263.25 and c["cargos_unicos"]["subtotal"] == 8750.0
 
 
 def test_solo_confirmados_pasan_a_la_propuesta():

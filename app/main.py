@@ -2,7 +2,7 @@
 
 Mensajes del navegador por WebSocket (/ws), en JSON con campo "tipo":
   iniciar  {cliente_id, modo: microfono|simulacion|repeticion}
-  frase    {hablante: cliente|vendedor, texto}        (modo micrófono)
+  frase    {hablante: auto|cliente|vendedor, texto}   (modo micrófono; auto = lo decide Claude)
   simular  {}  /  pausar {}                           (guion cada SEGUNDOS_POR_LINEA)
   feedback {sku, correcto: true|false}
   cerrar   {}
@@ -111,7 +111,7 @@ async def ws(websocket: WebSocket):
             elif sesion is None:
                 await enviar("error", {"mensaje": "Primero inicia una sesión"})
             elif tipo == "frase":
-                await sesion.agregar_frase(msg.get("hablante", "cliente"), msg.get("texto", ""))
+                await sesion.agregar_frase(msg.get("hablante", "auto"), msg.get("texto", ""))
             elif tipo == "simular":
                 sesion.iniciar_simulacion()
             elif tipo == "pausar":

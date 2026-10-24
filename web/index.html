@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Copiloto Comercial</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='7' fill='%231f5fbf'/></svg>">
 <link rel="stylesheet" href="/web/estilos.css">
 </head>
 <body>
@@ -51,8 +52,9 @@
       <div id="ctl-mic" hidden>
         <button id="mic" class="boton grande">🎙 Iniciar escucha</button>
         <span id="escuchando" class="escuchando" hidden><i class="punto"></i> Escuchando…</span>
-        <div class="hablante">Habla:
-          <button data-h="cliente" class="seg activo">Cliente</button>
+        <div class="hablante">Quién habla:
+          <button data-h="auto" class="seg activo" title="La IA lo detecta por lo que se dice">Automático</button>
+          <button data-h="cliente" class="seg">Cliente</button>
           <button data-h="vendedor" class="seg">Vendedor</button>
         </div>
       </div>

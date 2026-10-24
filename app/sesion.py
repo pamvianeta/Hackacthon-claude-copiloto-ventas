@@ -2,6 +2,7 @@
 
 Eventos que se envían al navegador (contrato del WebSocket):
   sesion, modo, error, analisis (auxiliar: {en_curso} para que el micrófono acumule frases),
+  speakers (auxiliar: Claude etiquetó quién dijo cada frase «auto»),
   transcript, notes_update, triage, suggested_question, glossary, suggestion, feedback, blocked,
   proposal_ready
 """
@@ -44,18 +45,20 @@ class Sesion:
         await self.enviar("modo", {"modo": self.modo, "motivo": None})
 
     async def agregar_frase(self, hablante: str, texto: str):
+        """hablante: cliente | vendedor | auto (lo decide Claude en el siguiente análisis)."""
         texto = (texto or "").strip()
         if not texto or self.cerrada:
             return
+        auto = hablante == "auto"
         frase = {"hablante": "vendedor" if hablante == "vendedor" else "cliente", "texto": texto,
-                 "hora": datetime.now().strftime("%H:%M:%S")}
+                 "hora": datetime.now().strftime("%H:%M:%S"), "auto": auto}
         self.frases.append(frase)
         conn = db.conectar()
         with conn:
-            conn.execute("INSERT INTO frases (sesion_id, hablante, texto) VALUES (?, ?, ?)",
-                         (self.id, frase["hablante"], texto))
+            frase["id"] = conn.execute("INSERT INTO frases (sesion_id, hablante, texto) VALUES (?, ?, ?)",
+                                       (self.id, frase["hablante"], texto)).lastrowid
         conn.close()
-        await self.enviar("transcript", {"frase": frase, "total": len(self.frases)})
+        await self.enviar("transcript", {"frase": frase, "indice": len(self.frases) - 1, "total": len(self.frases)})
         self._en_segundo_plano(self.solicitar_analisis())
 
     def _en_segundo_plano(self, corrutina):
@@ -122,7 +125,26 @@ class Sesion:
                                        "motivo": f"La IA no está disponible ({e}). Se usan respuestas pregrabadas."})
             r = await self._correr()
         self.resultado = r
+        await self._aplicar_hablantes(r.get("hablantes", []))
         await self._emitir(r)
+
+    async def _aplicar_hablantes(self, etiquetas: list[dict]):
+        """Claude etiqueta las frases «auto»; una vez etiquetada, la frase ya no cambia."""
+        cambios = []
+        for h in etiquetas:
+            i = h["linea"] - 1
+            if 0 <= i < len(self.frases) and self.frases[i].get("auto"):
+                f = self.frases[i]
+                f.update(hablante=h["hablante"], auto=False, por_ia=True)
+                cambios.append({"indice": i, "hablante": h["hablante"]})
+        if not cambios:
+            return
+        conn = db.conectar()
+        with conn:
+            conn.executemany("UPDATE frases SET hablante = ? WHERE id = ?",
+                             [(self.frases[c["indice"]]["hablante"], self.frases[c["indice"]]["id"]) for c in cambios])
+        conn.close()
+        await self.enviar("speakers", {"cambios": cambios})
 
     async def _emitir(self, r: dict):
         t, c = r["triaje"], r["cotizacion"]

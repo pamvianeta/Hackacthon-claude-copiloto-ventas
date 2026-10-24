@@ -1,0 +1,176 @@
+{
+  "_nota": "Modo REPETICIÓN (sin IA). Respuestas PREGRABADAS escritas a mano con el formato de Claude (la cuenta aún no tenía crédito). Regrabar con: py -m app.grabar CASO-01",
+  "pasos": [
+    {
+      "tras_frases": 2,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-M365-03", "cantidad": null, "cita": "una recepcionista abrió un archivo y se cifraron las computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."}
+        ],
+        "hechos": [],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Correo profesional y seguridad tras un ataque de ransomware", "estado": "completo", "cita": "se cifraron las computadoras. Queremos algo más seguro"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "Falta número de usuarios y equipos", "estado": "faltante", "cita": ""},
+          {"tema": "Situación actual", "resumen": "Correos de Gmail personales", "estado": "incompleto", "cita": "Usamos correos de Gmail personales"},
+          {"tema": "Continuidad y tiempos", "resumen": "Falta", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Sufrieron un ataque; falta saber si manejan datos de salud", "estado": "incompleto", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-M365-03", "pregunta": "¿Han tenido incidentes de seguridad?", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"}
+        ],
+        "glosario": [
+          {"termino": "Ransomware", "en_lenguaje_comercial": "Virus que cifra (bloquea) los archivos y pide un rescate. Es lo que le pasó a la clínica."},
+          {"termino": "Correo con dominio propio", "en_lenguaje_comercial": "Lo que el cliente pide al dejar Gmail personal: correos tipo nombre@clinica.com."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Cuántos usuarios y equipos?", "por_que": "Las licencias se cobran por usuario."}
+      }
+    },
+    {
+      "tras_frases": 4,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
+          {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."}
+        ],
+        "hechos": [
+          {"nombre": "usuarios_m365", "valor": "25", "cita": "Somos 25 personas en la clínica"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Correo profesional y seguridad tras un ataque de ransomware", "estado": "completo", "cita": "se cifraron las computadoras. Queremos algo más seguro"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "25 personas y 18 computadoras", "estado": "completo", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"tema": "Situación actual", "resumen": "Correos de Gmail personales", "estado": "incompleto", "cita": "Usamos correos de Gmail personales"},
+          {"tema": "Continuidad y tiempos", "resumen": "Falta", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Sufrieron un ataque; falta saber si manejan datos de salud", "estado": "incompleto", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-M365-03", "pregunta": "¿Han tenido incidentes de seguridad?", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"sku": "SIM-M365-03", "pregunta": "¿Cuántos usuarios y equipos?", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"sku": "SIM-BK-04", "pregunta": "¿Cuántos equipos?", "cita": "tenemos 18 computadoras"}
+        ],
+        "glosario": [
+          {"termino": "Ransomware", "en_lenguaje_comercial": "Virus que cifra (bloquea) los archivos y pide un rescate. Es lo que le pasó a la clínica."},
+          {"termino": "Microsoft 365 Business Premium", "en_lenguaje_comercial": "Correo, Office y seguridad avanzada en un solo paquete por persona."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Dónde están los respaldos hoy?", "por_que": "Saber si hay algo que recuperar."}
+      }
+    },
+    {
+      "tras_frases": 8,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
+          {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."},
+          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "no respaldamos nada, todo está en las computadoras y en el correo", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
+          {"sku": "SIM-M365-06", "cantidad": 25, "cita": "queremos pasar los correos de las 25 cuentas sin perder nada", "dile_al_cliente": "Pasamos todos sus correos de Gmail a su nuevo correo sin perder ninguno."}
+        ],
+        "hechos": [
+          {"nombre": "usuarios_m365", "valor": "25", "cita": "Somos 25 personas en la clínica"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Correo profesional, seguridad y respaldos tras un ataque de ransomware", "estado": "completo", "cita": "se cifraron las computadoras. Queremos algo más seguro"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "25 personas, 18 computadoras, 25 buzones", "estado": "completo", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"tema": "Situación actual", "resumen": "Gmail personal y sin respaldos", "estado": "completo", "cita": "no respaldamos nada, todo está en las computadoras y en el correo"},
+          {"tema": "Continuidad y tiempos", "resumen": "No se habló de tiempos", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Sufrieron un ataque; falta saber si manejan datos de salud", "estado": "incompleto", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-M365-03", "pregunta": "¿Han tenido incidentes de seguridad?", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"sku": "SIM-M365-03", "pregunta": "¿Cuántos usuarios y equipos?", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"sku": "SIM-BK-04", "pregunta": "¿Cuántos equipos?", "cita": "tenemos 18 computadoras"},
+          {"sku": "SIM-M365-06", "pregunta": "¿Cuántos buzones?", "cita": "los correos de las 25 cuentas"},
+          {"sku": "SIM-M365-06", "pregunta": "¿Desde qué servicio?", "cita": "Usamos correos de Gmail personales"}
+        ],
+        "glosario": [
+          {"termino": "Ransomware", "en_lenguaje_comercial": "Virus que cifra (bloquea) los archivos y pide un rescate. Es lo que le pasó a la clínica."},
+          {"termino": "Microsoft 365 Business Premium", "en_lenguaje_comercial": "Correo, Office y seguridad avanzada en un solo paquete por persona."},
+          {"termino": "Migración de correo", "en_lenguaje_comercial": "Pasar los correos, contactos y calendarios de Gmail al nuevo correo."},
+          {"termino": "Buzón", "en_lenguaje_comercial": "Cada cuenta de correo; el cliente tiene 25."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Guardan expedientes de pacientes?", "por_que": "Una clínica puede manejar datos de salud."}
+      }
+    },
+    {
+      "tras_frases": 10,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
+          {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."},
+          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "no respaldamos nada, todo está en las computadoras y en el correo", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
+          {"sku": "SIM-M365-06", "cantidad": 25, "cita": "queremos pasar los correos de las 25 cuentas sin perder nada", "dile_al_cliente": "Pasamos todos sus correos de Gmail a su nuevo correo sin perder ninguno."}
+        ],
+        "hechos": [
+          {"nombre": "usuarios_m365", "valor": "25", "cita": "Somos 25 personas en la clínica"},
+          {"nombre": "regulacion", "valor": "salud", "cita": "guardamos los expedientes clínicos de los pacientes"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Correo profesional, seguridad y respaldos tras un ataque de ransomware", "estado": "completo", "cita": "se cifraron las computadoras. Queremos algo más seguro"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "25 personas, 18 computadoras, 25 buzones", "estado": "completo", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"tema": "Situación actual", "resumen": "Gmail personal, sin respaldos; expedientes y radiografías en las computadoras", "estado": "completo", "cita": "guardamos los expedientes clínicos de los pacientes y las radiografías en las computadoras"},
+          {"tema": "Continuidad y tiempos", "resumen": "No se habló de tiempos", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Manejan expedientes clínicos: datos de salud", "estado": "completo", "cita": "guardamos los expedientes clínicos de los pacientes"},
+          {"tema": "Plazo y presupuesto", "resumen": "Falta", "estado": "faltante", "cita": ""}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-M365-03", "pregunta": "¿Han tenido incidentes de seguridad?", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"sku": "SIM-M365-03", "pregunta": "¿Cuántos usuarios y equipos?", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"sku": "SIM-BK-04", "pregunta": "¿Cuántos equipos?", "cita": "tenemos 18 computadoras"},
+          {"sku": "SIM-M365-06", "pregunta": "¿Cuántos buzones?", "cita": "los correos de las 25 cuentas"},
+          {"sku": "SIM-M365-06", "pregunta": "¿Desde qué servicio?", "cita": "Usamos correos de Gmail personales"}
+        ],
+        "glosario": [
+          {"termino": "Ransomware", "en_lenguaje_comercial": "Virus que cifra (bloquea) los archivos y pide un rescate. Es lo que le pasó a la clínica."},
+          {"termino": "Microsoft 365 Business Premium", "en_lenguaje_comercial": "Correo, Office y seguridad avanzada en un solo paquete por persona."},
+          {"termino": "Migración de correo", "en_lenguaje_comercial": "Pasar los correos, contactos y calendarios de Gmail al nuevo correo."},
+          {"termino": "Datos de salud", "en_lenguaje_comercial": "Información sensible de pacientes; exige revisión de un especialista antes de prometer cómo se protege."}
+        ],
+        "siguiente_pregunta": {"texto": "¿A qué plazo les interesa contratar: 12, 24 o 36 meses?", "por_que": "Define el descuento por plazo."}
+      }
+    },
+    {
+      "tras_frases": 12,
+      "extraccion": {
+        "productos": [
+          {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
+          {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."},
+          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "no respaldamos nada, todo está en las computadoras y en el correo", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
+          {"sku": "SIM-M365-06", "cantidad": 25, "cita": "queremos pasar los correos de las 25 cuentas sin perder nada", "dile_al_cliente": "Pasamos todos sus correos de Gmail a su nuevo correo sin perder ninguno."}
+        ],
+        "hechos": [
+          {"nombre": "usuarios_m365", "valor": "25", "cita": "Somos 25 personas en la clínica"},
+          {"nombre": "regulacion", "valor": "salud", "cita": "guardamos los expedientes clínicos de los pacientes"},
+          {"nombre": "plazo_meses", "valor": "24", "cita": "Lo veríamos a 24 meses"}
+        ],
+        "fuera_de_catalogo": [],
+        "notas": [
+          {"tema": "Necesidad principal", "resumen": "Correo profesional, seguridad y respaldos tras un ataque de ransomware", "estado": "completo", "cita": "se cifraron las computadoras. Queremos algo más seguro"},
+          {"tema": "Tamaño (usuarios, equipos, TB)", "resumen": "25 personas, 18 computadoras, 25 buzones", "estado": "completo", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"tema": "Situación actual", "resumen": "Gmail personal, sin respaldos; expedientes y radiografías en las computadoras", "estado": "completo", "cita": "guardamos los expedientes clínicos de los pacientes y las radiografías en las computadoras"},
+          {"tema": "Continuidad y tiempos", "resumen": "No se habló de tiempos", "estado": "faltante", "cita": ""},
+          {"tema": "Seguridad y regulación", "resumen": "Manejan expedientes clínicos: datos de salud", "estado": "completo", "cita": "guardamos los expedientes clínicos de los pacientes"},
+          {"tema": "Plazo y presupuesto", "resumen": "24 meses", "estado": "completo", "cita": "Lo veríamos a 24 meses"}
+        ],
+        "preguntas_respondidas": [
+          {"sku": "SIM-M365-03", "pregunta": "¿Han tenido incidentes de seguridad?", "cita": "una recepcionista abrió un archivo y se cifraron las computadoras"},
+          {"sku": "SIM-M365-03", "pregunta": "¿Cuántos usuarios y equipos?", "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras"},
+          {"sku": "SIM-BK-04", "pregunta": "¿Cuántos equipos?", "cita": "tenemos 18 computadoras"},
+          {"sku": "SIM-M365-06", "pregunta": "¿Cuántos buzones?", "cita": "los correos de las 25 cuentas"},
+          {"sku": "SIM-M365-06", "pregunta": "¿Desde qué servicio?", "cita": "Usamos correos de Gmail personales"}
+        ],
+        "glosario": [
+          {"termino": "Ransomware", "en_lenguaje_comercial": "Virus que cifra (bloquea) los archivos y pide un rescate. Es lo que le pasó a la clínica."},
+          {"termino": "Microsoft 365 Business Premium", "en_lenguaje_comercial": "Correo, Office y seguridad avanzada en un solo paquete por persona."},
+          {"termino": "Migración de correo", "en_lenguaje_comercial": "Pasar los correos, contactos y calendarios de Gmail al nuevo correo."},
+          {"termino": "Datos de salud", "en_lenguaje_comercial": "Información sensible de pacientes; exige revisión de un especialista antes de prometer cómo se protege."}
+        ],
+        "siguiente_pregunta": {"texto": "¿Usan computadoras personales para trabajar?", "por_que": "Afecta cómo se protegen los equipos."}
+      }
+    }
+  ]
+}

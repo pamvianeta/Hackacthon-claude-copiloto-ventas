@@ -44,6 +44,9 @@ REGLAS (obligatorias):
     lenguaje de negocio; también lo que dijo el cliente traducido a concepto técnico.
 11. "siguiente_pregunta": la pregunta más útil que falta para cerrar el levantamiento en esta sesión,
     preferentemente una de las preguntas_clave.
+12. "hablantes": para cada renglón marcado [¿?] di quién habla, por el contenido: el VENDEDOR pregunta,
+    ofrece, explica servicios o agradece; el CLIENTE describe su empresa, sus sistemas, problemas,
+    cantidades y necesidades. Usa el número del renglón. Si un renglón no está marcado [¿?], no lo incluyas.
 """
 
 
@@ -84,6 +87,8 @@ def esquema(catalogo, reglas) -> dict:
             "sku": {"type": "string", "enum": sorted(catalogo.productos)}, "pregunta": texto, "cita": cita})},
         "glosario": {"type": "array", "items": obj({"termino": texto, "en_lenguaje_comercial": texto})},
         "siguiente_pregunta": obj({"texto": texto, "por_que": texto}),
+        "hablantes": {"type": "array", "items": obj({
+            "linea": {"type": "integer"}, "hablante": {"type": "string", "enum": ["cliente", "vendedor"]}})},
     })
 
 
@@ -103,7 +108,8 @@ def mensaje_usuario(frases: list[dict], cliente: dict | None, aprendizajes: list
         ejemplos = "\n".join(f"- «{a['frase_cliente']}» → {a['sku']} (confirmado {a['confirmados']} veces)"
                              for a in aprendizajes)
         partes.append(f"EJEMPLOS CONFIRMADOS POR VENDEDORES (frase del cliente → producto correcto):\n{ejemplos}")
-    lineas = "\n".join(f"[{f['hablante'].capitalize()}] {f['texto']}" for f in frases)
+    lineas = "\n".join(f"[{i}] [{'¿?' if f.get('auto') else f['hablante'].capitalize()}] {f['texto']}"
+                       for i, f in enumerate(frases, start=1))
     partes.append(f"TRANSCRIPCIÓN HASTA AHORA:\n{lineas}")
     return "\n\n".join(partes)
 

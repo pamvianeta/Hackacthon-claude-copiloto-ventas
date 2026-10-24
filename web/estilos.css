@@ -94,6 +94,7 @@ h3 { font-size: 1.05rem; margin: 0 0 10px; }
 .frase { padding: 4px 0; }
 .frase .quien { font-weight: 700; font-size: .85rem; margin-right: 6px; }
 .frase.vendedor .quien { color: var(--acento); }
+.frase.auto .quien { color: #9aa4ad; font-style: italic; }
 .provisional { color: #9aa4ad; margin: 4px 0 0; min-height: 1.4em; }
 
 .glosario dt { font-weight: 700; margin-top: 6px; }
