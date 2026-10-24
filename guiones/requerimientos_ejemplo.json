@@ -1,0 +1,35 @@
+{
+  "_nota": "Requerimientos de ejemplo (como si la llamada ya hubiera terminado) para revisar el motor sin IA. Uso: py -m app.demo_motor CASO-02",
+  "CASO-07": {
+    "productos": [
+      {"sku": "SIM-BK-01", "cantidad": 2, "cita": "son como 2 TB de archivos de clientes"},
+      {"sku": "SIM-BK-05", "cantidad": 2, "cita": "el SAT nos pide guardarlos 5 años"},
+      {"sku": "SIM-BK-02", "cantidad": 12, "cita": "los 12 usamos Microsoft 365"}
+    ],
+    "hechos": {"regulacion": {"valor": "otra", "cita": "el SAT nos pide guardarlos 5 años"}},
+    "fuera_de_catalogo": []
+  },
+  "CASO-02": {
+    "productos": [
+      {"sku": "SIM-DC-04", "cantidad": 1, "cita": "nuestro ERP corre en dos servidores"},
+      {"sku": "SIM-DC-07", "cantidad": 2, "cita": "no podemos estar más de dos horas sin sistema"},
+      {"sku": "SIM-BK-01", "cantidad": 2, "cita": "respaldamos unos 2 TB"},
+      {"sku": "SIM-DC-08", "cantidad": 1, "cita": "las tres sucursales se conectan al ERP"}
+    ],
+    "hechos": {
+      "rto_horas": {"valor": 2, "cita": "no podemos estar más de dos horas sin sistema"},
+      "vcpu_total": {"valor": 24, "cita": "entre los dos servidores son 24 procesadores"},
+      "sitios": {"valor": 3, "cita": "las tres sucursales se conectan al ERP"},
+      "plazo_meses": {"valor": 12, "cita": "a un año"}
+    },
+    "fuera_de_catalogo": [{"cita": "y si nos pueden vender las UPS para la planta", "que_pide": "Equipo UPS (no está en el catálogo)"}]
+  },
+  "CASO-06": {
+    "productos": [
+      {"sku": "SIM-OCI-03", "cantidad": 1, "cita": "una base de datos Oracle de 6 TB"},
+      {"sku": "SIM-OCI-02", "cantidad": 1, "cita": "una base de datos Oracle de 6 TB"}
+    ],
+    "hechos": {"oracle_tb": {"valor": 6, "cita": "una base de datos Oracle de 6 TB"}},
+    "fuera_de_catalogo": []
+  }
+}
