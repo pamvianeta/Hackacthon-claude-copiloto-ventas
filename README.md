@@ -59,6 +59,10 @@ Revisa catálogo, base, modo Repetición, Word/PDF y la clave de Claude. Si la I
 
 Para usarlo como **overlay**, abre la página en una ventana angosta de Chrome a un lado de la videollamada.
 
+## Cómo se llevaría a producción
+Ver [docs/ARQUITECTURA.md](docs/ARQUITECTURA.md): dónde se ejecuta y se guardan los datos (Azure, bajo costo),
+inicio de sesión con Microsoft Entra ID y permisos (cada vendedor ve lo suyo; el jefe comercial, su equipo).
+
 ## Qué cubre cada parte
 
 | Pieza | Archivo |
