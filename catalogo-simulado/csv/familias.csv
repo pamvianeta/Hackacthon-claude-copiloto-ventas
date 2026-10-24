@@ -1,0 +1,8 @@
+﻿id,nombre,descripcion,problemas_que_resuelve
+DC,Data Center,"Espacio, servidores y nube privada en un data center con energía, enfriamiento y seguridad 24/7.","Sistemas que corren en un cuarto de la oficina, cortes de luz, falta de espacio o equipo viejo."
+M365,Microsoft 365,"Correo, Teams, Office y seguridad de Microsoft con licencias, migración y soporte.","Correos personales o gratuitos, archivos dispersos, poca seguridad en las computadoras."
+BK,Backup inmutable,"Respaldos que nadie puede borrar ni cifrar, ni siquiera un ransomware o un administrador.","Miedo o experiencia de ransomware, pérdida de información, obligación de guardar datos por años."
+AWS,Infraestructura AWS,"Consumo de Amazon Web Services facturado en pesos, con diseño, migración y soporte administrado.","Querer pasar a la nube, factura de nube que crece sin control, falta de personal que la administre."
+AZ,Infraestructura Azure,"Consumo de Microsoft Azure facturado en pesos, con escritorios virtuales, migración y soporte.","Servidores Windows por renovar, trabajo remoto, empresas que ya usan Microsoft."
+OCI,Infraestructura OCI,"Oracle Cloud Infrastructure para bases de datos y sistemas Oracle, con migración y soporte.","Bases de datos o ERP Oracle en servidores propios, licencias caras, hardware por vencer."
+IA,Agentes de IA,"Asistentes con IA que atienden clientes, responden dudas internas o apoyan a TI.","Muchos mensajes repetidos, personal saturado, conocimiento disperso en documentos."

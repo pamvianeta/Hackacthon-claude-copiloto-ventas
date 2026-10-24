@@ -1,0 +1,11 @@
+﻿id,cuando_entra_un_arquitecto
+ESC-01,Cualquier producto de tipo «a la medida».
+ESC-02,Más de 300 usuarios en Microsoft 365 o licencias de distintos tipos mezcladas.
+ESC-03,Migración de más de 10 servidores o de aplicaciones sin documentación.
+ESC-04,"Requisitos regulatorios: CNBV, datos de salud, datos personales sensibles o pagos con tarjeta."
+ESC-05,"Integración con sistemas internos del cliente (ERP, CRM, sistemas propios)."
+ESC-06,Solución que combina dos o más nubes o nube con data center (híbrida).
+ESC-07,"Niveles de servicio más exigentes que los estándar: RPO menor a 15 min, RTO menor a 4 h o disponibilidad mayor a 99.95%."
+ESC-08,Bases de datos Oracle de más de 2 TB o con RAC / Data Guard.
+ESC-09,"Presupuesto estimado mayor a $250,000 MXN al mes."
+ESC-10,El cliente pide un diseño de arquitectura o un documento técnico formal.

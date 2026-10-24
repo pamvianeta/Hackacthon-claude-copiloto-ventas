@@ -1,0 +1,31 @@
+# Secretos: la clave de Claude NUNCA se sube
+.env
+.env.*
+!.env.example
+api-claude.txt
+*clave*.txt
+*.key
+
+# Material del reto (no se sube salvo que el equipo lo decida)
+Materiales-del-reto-Hackathon-Claude.pdf
+
+# Configuración local de Claude Code
+.claude/settings.local.json
+
+# Entorno de Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Datos generados al correr (se recrean desde el JSON)
+data/
+salidas/
+
+# Editor / sistema
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+~$*.docx

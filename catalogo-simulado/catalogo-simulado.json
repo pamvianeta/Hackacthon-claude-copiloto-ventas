@@ -1,0 +1,1563 @@
+{
+  "aviso": "Datos SIMULADOS para el Hackathon Claude. No son productos, precios ni condiciones oficiales de Alestra. Sirven para construir y probar tu solución con el mismo tipo de información que usa el equipo comercial.",
+  "familias": [
+    {
+      "id": "DC",
+      "nombre": "Data Center",
+      "descripcion": "Espacio, servidores y nube privada en un data center con energía, enfriamiento y seguridad 24/7.",
+      "problemas_que_resuelve": "Sistemas que corren en un cuarto de la oficina, cortes de luz, falta de espacio o equipo viejo."
+    },
+    {
+      "id": "M365",
+      "nombre": "Microsoft 365",
+      "descripcion": "Correo, Teams, Office y seguridad de Microsoft con licencias, migración y soporte.",
+      "problemas_que_resuelve": "Correos personales o gratuitos, archivos dispersos, poca seguridad en las computadoras."
+    },
+    {
+      "id": "BK",
+      "nombre": "Backup inmutable",
+      "descripcion": "Respaldos que nadie puede borrar ni cifrar, ni siquiera un ransomware o un administrador.",
+      "problemas_que_resuelve": "Miedo o experiencia de ransomware, pérdida de información, obligación de guardar datos por años."
+    },
+    {
+      "id": "AWS",
+      "nombre": "Infraestructura AWS",
+      "descripcion": "Consumo de Amazon Web Services facturado en pesos, con diseño, migración y soporte administrado.",
+      "problemas_que_resuelve": "Querer pasar a la nube, factura de nube que crece sin control, falta de personal que la administre."
+    },
+    {
+      "id": "AZ",
+      "nombre": "Infraestructura Azure",
+      "descripcion": "Consumo de Microsoft Azure facturado en pesos, con escritorios virtuales, migración y soporte.",
+      "problemas_que_resuelve": "Servidores Windows por renovar, trabajo remoto, empresas que ya usan Microsoft."
+    },
+    {
+      "id": "OCI",
+      "nombre": "Infraestructura OCI",
+      "descripcion": "Oracle Cloud Infrastructure para bases de datos y sistemas Oracle, con migración y soporte.",
+      "problemas_que_resuelve": "Bases de datos o ERP Oracle en servidores propios, licencias caras, hardware por vencer."
+    },
+    {
+      "id": "IA",
+      "nombre": "Agentes de IA",
+      "descripcion": "Asistentes con IA que atienden clientes, responden dudas internas o apoyan a TI.",
+      "problemas_que_resuelve": "Muchos mensajes repetidos, personal saturado, conocimiento disperso en documentos."
+    }
+  ],
+  "productos": [
+    {
+      "sku": "SIM-DC-01",
+      "familia": "DC",
+      "nombre": "Colocation 1/4 de rack",
+      "descripcion": "Espacio de 10U en data center Tier III para los servidores del cliente, con 1 kVA de energía y acceso 24/7.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 7900,
+      "cargo_unico_mxn": 5000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.98% de disponibilidad eléctrica",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-DC-08",
+        "SIM-BK-01"
+      ],
+      "senal_del_cliente": "Tenemos el servidor en un cuarto de la oficina; se nos fue la luz y paramos",
+      "preguntas_clave": [
+        "¿Cuántos equipos y cuántas U ocupan?",
+        "¿Cuánta energía consumen?",
+        "¿Necesitan entrar físicamente al equipo?"
+      ],
+      "cuando_entra_arquitecto": "Más de 4 kVA o equipo que no es estándar de rack"
+    },
+    {
+      "sku": "SIM-DC-02",
+      "familia": "DC",
+      "nombre": "Colocation rack completo",
+      "descripcion": "Rack de 42U con 4 kVA de energía, jaula cerrada y acceso 24/7.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 21500,
+      "cargo_unico_mxn": 12000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.98% de disponibilidad eléctrica",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-DC-08",
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Nuestro site ya no da para más; queremos sacar los equipos del edificio",
+      "preguntas_clave": [
+        "¿Cuántos racks tienen hoy?",
+        "¿Consumo eléctrico por rack?",
+        "¿Requieren jaula o cuarto privado?"
+      ],
+      "cuando_entra_arquitecto": "Más de 3 racks o más de 4 kVA por rack"
+    },
+    {
+      "sku": "SIM-DC-03",
+      "familia": "DC",
+      "nombre": "Nube privada paquete S",
+      "descripcion": "Servidores virtuales dedicados: 8 vCPU, 32 GB de RAM y 500 GB SSD. Alestra administra el hardware.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 6800,
+      "cargo_unico_mxn": 3500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.95% de disponibilidad",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-03",
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Queremos dejar de comprar servidores; el nuestro ya tiene 7 años",
+      "preguntas_clave": [
+        "¿Qué sistemas corren y cuántos usuarios los usan?",
+        "¿Cuánta memoria y disco usan hoy?",
+        "¿Qué sistema operativo?"
+      ],
+      "cuando_entra_arquitecto": "El cliente no sabe qué recursos usa o son más de 64 vCPU en total"
+    },
+    {
+      "sku": "SIM-DC-04",
+      "familia": "DC",
+      "nombre": "Nube privada paquete M",
+      "descripcion": "Servidores virtuales dedicados: 16 vCPU, 64 GB de RAM y 1 TB SSD.",
+      "tipo": "configurable",
+      "segmento": "mediana",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 12900,
+      "cargo_unico_mxn": 3500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.95% de disponibilidad",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-03",
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Nuestro ERP se pone lento a fin de mes",
+      "preguntas_clave": [
+        "¿Qué sistemas corren y cuántos usuarios los usan?",
+        "¿Cuánta memoria y disco usan hoy?",
+        "¿Qué sistema operativo?"
+      ],
+      "cuando_entra_arquitecto": "El cliente no sabe qué recursos usa o son más de 64 vCPU en total"
+    },
+    {
+      "sku": "SIM-DC-05",
+      "familia": "DC",
+      "nombre": "Nube privada paquete L",
+      "descripcion": "Servidores virtuales dedicados: 32 vCPU, 128 GB de RAM y 2 TB SSD.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 24500,
+      "cargo_unico_mxn": 3500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.95% de disponibilidad",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-03",
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Tenemos varios sistemas críticos en servidores propios",
+      "preguntas_clave": [
+        "¿Qué sistemas corren y cuántos usuarios los usan?",
+        "¿Cuánta memoria y disco usan hoy?",
+        "¿Qué sistema operativo?"
+      ],
+      "cuando_entra_arquitecto": "Más de un paquete L o aplicaciones con licencias por núcleo"
+    },
+    {
+      "sku": "SIM-DC-06",
+      "familia": "DC",
+      "nombre": "Servidor dedicado",
+      "descripcion": "Servidor físico exclusivo (16 núcleos, 128 GB de RAM, 2 x 1.9 TB SSD) administrado en el data center.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 9800,
+      "cargo_unico_mxn": 4000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% de disponibilidad",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-03"
+      ],
+      "senal_del_cliente": "Nuestro software no se puede virtualizar por licencias",
+      "preguntas_clave": [
+        "¿Por qué necesitan un servidor físico?",
+        "¿Qué software y licencias usan?"
+      ],
+      "cuando_entra_arquitecto": "Requisitos de hardware especiales (GPU, más memoria, más discos)"
+    },
+    {
+      "sku": "SIM-DC-07",
+      "familia": "DC",
+      "nombre": "Recuperación ante desastres (DRaaS)",
+      "descripcion": "Réplica de servidores en otro data center. Si el sitio principal cae, se levantan ahí. RPO 15 min, RTO 4 h.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por servidor al mes",
+      "precio_mensual_mxn": 650,
+      "cargo_unico_mxn": 15000,
+      "cantidad_minima": 2,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "RPO 15 min · RTO 4 h",
+      "tiempo_implementacion": "3 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-01"
+      ],
+      "senal_del_cliente": "Si se cae el sistema perdemos ventas cada hora; no tenemos plan B",
+      "preguntas_clave": [
+        "¿Cuántos servidores son críticos?",
+        "¿Cuánto tiempo pueden estar sin sistema?",
+        "¿Cuántos datos pueden perder como máximo?"
+      ],
+      "cuando_entra_arquitecto": "RPO menor a 15 min, RTO menor a 4 h o más de 20 servidores"
+    },
+    {
+      "sku": "SIM-DC-08",
+      "familia": "DC",
+      "nombre": "Enlace dedicado al data center",
+      "descripcion": "Conexión privada de 100 Mbps entre la oficina del cliente y el data center.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 4200,
+      "cargo_unico_mxn": 6000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% de disponibilidad",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-DC-01",
+        "SIM-DC-03"
+      ],
+      "senal_del_cliente": "Si movemos el servidor, ¿cómo se conectan las sucursales?",
+      "preguntas_clave": [
+        "¿Cuántas oficinas o sucursales se conectan?",
+        "¿Qué velocidad de internet tienen hoy?"
+      ],
+      "cuando_entra_arquitecto": "Más de 5 sitios o velocidades mayores a 1 Gbps"
+    },
+    {
+      "sku": "SIM-DC-09",
+      "familia": "DC",
+      "nombre": "Migración a data center (proyecto)",
+      "descripcion": "Plan y ejecución del traslado de equipos o sistemas al data center sin interrumpir la operación.",
+      "tipo": "a la medida",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por proyecto",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según proyecto",
+      "tiempo_implementacion": "4 a 12 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-DC-02",
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Queremos mudar todo el site, pero no podemos parar",
+      "preguntas_clave": [
+        "¿Cuántos equipos y sistemas hay?",
+        "¿Qué ventanas de mantenimiento tienen?",
+        "¿Hay sistemas sin documentar?"
+      ],
+      "cuando_entra_arquitecto": "Siempre"
+    },
+    {
+      "sku": "SIM-M365-01",
+      "familia": "M365",
+      "nombre": "Microsoft 365 Business Basic",
+      "descripcion": "Correo profesional, Teams, 1 TB en OneDrive y Office en versión web.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 115,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 300,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% (servicio de Microsoft)",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-06",
+        "SIM-BK-02"
+      ],
+      "senal_del_cliente": "Usamos correos de Gmail personales; queremos correo con nuestro dominio",
+      "preguntas_clave": [
+        "¿Cuántos usuarios?",
+        "¿Qué correo usan hoy?",
+        "¿Necesitan Office de escritorio?"
+      ],
+      "cuando_entra_arquitecto": "Más de 300 usuarios"
+    },
+    {
+      "sku": "SIM-M365-02",
+      "familia": "M365",
+      "nombre": "Microsoft 365 Business Standard",
+      "descripcion": "Todo lo de Basic más Office de escritorio (Word, Excel, PowerPoint, Outlook).",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 245,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 300,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% (servicio de Microsoft)",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-06",
+        "SIM-BK-02"
+      ],
+      "senal_del_cliente": "Compramos Office por separado en cada computadora",
+      "preguntas_clave": [
+        "¿Cuántos usuarios?",
+        "¿Qué versión de Office usan?",
+        "¿Trabajan desde varios dispositivos?"
+      ],
+      "cuando_entra_arquitecto": "Más de 300 usuarios"
+    },
+    {
+      "sku": "SIM-M365-03",
+      "familia": "M365",
+      "nombre": "Microsoft 365 Business Premium",
+      "descripcion": "Todo lo de Standard más seguridad avanzada: protección contra amenazas, control de equipos y de acceso.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 425,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 300,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% (servicio de Microsoft)",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-02",
+        "SIM-M365-07"
+      ],
+      "senal_del_cliente": "Abrieron un archivo y se infectaron las computadoras; nos preocupa la seguridad",
+      "preguntas_clave": [
+        "¿Cuántos usuarios y equipos?",
+        "¿Han tenido incidentes de seguridad?",
+        "¿Usan computadoras personales para trabajar?"
+      ],
+      "cuando_entra_arquitecto": "Más de 300 usuarios o requisitos regulatorios"
+    },
+    {
+      "sku": "SIM-M365-04",
+      "familia": "M365",
+      "nombre": "Microsoft 365 E3",
+      "descripcion": "Licencia empresarial para más de 300 usuarios, con cumplimiento y administración avanzada.",
+      "tipo": "configurable",
+      "segmento": "corporativo",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 690,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 300,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% (servicio de Microsoft)",
+      "tiempo_implementacion": "3 a 6 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-06",
+        "SIM-BK-02"
+      ],
+      "senal_del_cliente": "Somos más de 300 personas y tenemos licencias revueltas",
+      "preguntas_clave": [
+        "¿Cuántos usuarios?",
+        "¿Qué licencias tienen hoy y cuándo vencen?",
+        "¿Tienen requisitos de cumplimiento?"
+      ],
+      "cuando_entra_arquitecto": "Siempre que haya más de 1,000 usuarios o licencias mezcladas"
+    },
+    {
+      "sku": "SIM-M365-05",
+      "familia": "M365",
+      "nombre": "Microsoft 365 Copilot",
+      "descripcion": "Asistente de IA dentro de Word, Excel, PowerPoint, Outlook y Teams.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 590,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% (servicio de Microsoft)",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [
+        "SIM-M365-02",
+        "SIM-M365-03",
+        "SIM-M365-04"
+      ],
+      "se_recomienda_con": [
+        "SIM-IA-04"
+      ],
+      "senal_del_cliente": "Queremos usar IA en el trabajo diario",
+      "preguntas_clave": [
+        "¿Qué licencia de Microsoft 365 tienen?",
+        "¿Qué tareas quieren acelerar?",
+        "¿Cuántos usuarios lo usarían?"
+      ],
+      "cuando_entra_arquitecto": "Más de 500 usuarios o datos sin permisos ordenados"
+    },
+    {
+      "sku": "SIM-M365-06",
+      "familia": "M365",
+      "nombre": "Migración de correo",
+      "descripcion": "Traslado de buzones desde Gmail, Exchange u otro servicio, con calendarios y contactos.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "cargo único por buzón",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 350,
+      "cantidad_minima": 5,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Sin pérdida de correos",
+      "tiempo_implementacion": "1 a 3 semanas",
+      "requiere_alguno_de": [
+        "SIM-M365-01",
+        "SIM-M365-02",
+        "SIM-M365-03",
+        "SIM-M365-04"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "Tenemos 10 años de correos y no queremos perderlos",
+      "preguntas_clave": [
+        "¿Cuántos buzones?",
+        "¿Desde qué servicio?",
+        "¿Cuánto pesa el buzón más grande?"
+      ],
+      "cuando_entra_arquitecto": "Más de 500 buzones o servidores de correo propios"
+    },
+    {
+      "sku": "SIM-M365-07",
+      "familia": "M365",
+      "nombre": "Soporte administrado Microsoft 365",
+      "descripcion": "Mesa de ayuda para altas, bajas, contraseñas, permisos y dudas de los usuarios.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 45,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 10,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respuesta en menos de 4 h hábiles",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [
+        "SIM-M365-01",
+        "SIM-M365-02",
+        "SIM-M365-03",
+        "SIM-M365-04"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "No tenemos área de sistemas; el contador administra todo",
+      "preguntas_clave": [
+        "¿Quién administra hoy las cuentas?",
+        "¿Cuántas solicitudes tienen al mes?"
+      ],
+      "cuando_entra_arquitecto": "Soporte 24/7 o en sitio"
+    },
+    {
+      "sku": "SIM-M365-08",
+      "familia": "M365",
+      "nombre": "Teams Phone con número",
+      "descripcion": "Telefonía en Teams con número local para llamar a teléfonos fijos y celulares.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 260,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 5,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% (servicio de Microsoft)",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [
+        "SIM-M365-01",
+        "SIM-M365-02",
+        "SIM-M365-03",
+        "SIM-M365-04"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "Pagamos un conmutador viejo y la gente ya no está en la oficina",
+      "preguntas_clave": [
+        "¿Cuántas líneas usan?",
+        "¿Necesitan conservar sus números?",
+        "¿Tienen call center?"
+      ],
+      "cuando_entra_arquitecto": "Conmutador con más de 100 extensiones o call center"
+    },
+    {
+      "sku": "SIM-BK-01",
+      "familia": "BK",
+      "nombre": "Backup inmutable en la nube",
+      "descripcion": "Almacenamiento de respaldos que no se pueden borrar ni cifrar durante 30 días.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por TB al mes",
+      "precio_mensual_mxn": 1850,
+      "cargo_unico_mxn": 2500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Copias inmutables 30 días",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-BK-03",
+        "SIM-BK-05"
+      ],
+      "senal_del_cliente": "Nos atacó un ransomware y también cifró los respaldos",
+      "preguntas_clave": [
+        "¿Cuántos TB respaldan?",
+        "¿Qué tan seguido cambia la información?",
+        "¿Dónde están los respaldos hoy?"
+      ],
+      "cuando_entra_arquitecto": "Más de 100 TB o respaldos de sistemas fuera de lo común"
+    },
+    {
+      "sku": "SIM-BK-02",
+      "familia": "BK",
+      "nombre": "Backup de Microsoft 365",
+      "descripcion": "Respaldo diario de correo, OneDrive, SharePoint y Teams, con restauración por archivo o buzón.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 69,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 5,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respaldo diario, retención 1 año",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-03"
+      ],
+      "senal_del_cliente": "Una persona borró una carpeta compartida y no la pudimos recuperar",
+      "preguntas_clave": [
+        "¿Cuántos usuarios tienen Microsoft 365?",
+        "¿Cuánto tiempo necesitan conservar la información?"
+      ],
+      "cuando_entra_arquitecto": "Más de 2,000 usuarios"
+    },
+    {
+      "sku": "SIM-BK-03",
+      "familia": "BK",
+      "nombre": "Backup de servidores y máquinas virtuales",
+      "descripcion": "Respaldo automático de servidores físicos o virtuales hacia el backup inmutable.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por servidor al mes",
+      "precio_mensual_mxn": 420,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respaldo diario",
+      "tiempo_implementacion": "1 a 2 semanas",
+      "requiere_alguno_de": [
+        "SIM-BK-01"
+      ],
+      "se_recomienda_con": [
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Respaldamos a mano en un disco externo",
+      "preguntas_clave": [
+        "¿Cuántos servidores?",
+        "¿Físicos o virtuales?",
+        "¿Qué bases de datos tienen?"
+      ],
+      "cuando_entra_arquitecto": "Bases de datos de más de 5 TB o respaldos cada hora"
+    },
+    {
+      "sku": "SIM-BK-04",
+      "familia": "BK",
+      "nombre": "Backup de laptops y equipos",
+      "descripcion": "Respaldo de computadoras de los empleados, aunque trabajen fuera de la oficina.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana",
+      "unidad_cobro": "por equipo al mes",
+      "precio_mensual_mxn": 95,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 5,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respaldo diario",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-03"
+      ],
+      "senal_del_cliente": "Se robaron una laptop con información de clientes",
+      "preguntas_clave": [
+        "¿Cuántos equipos?",
+        "¿Trabajan fuera de la oficina?"
+      ],
+      "cuando_entra_arquitecto": "Más de 1,000 equipos"
+    },
+    {
+      "sku": "SIM-BK-05",
+      "familia": "BK",
+      "nombre": "Retención extendida",
+      "descripcion": "Conserva los respaldos de 1 a 10 años para auditorías o requisitos legales.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por TB al mes",
+      "precio_mensual_mxn": 600,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Retención de 1 a 10 años",
+      "tiempo_implementacion": "1 semana",
+      "requiere_alguno_de": [
+        "SIM-BK-01"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "El SAT o la auditoría nos pide guardar información 5 años",
+      "preguntas_clave": [
+        "¿Cuántos años deben conservar?",
+        "¿Qué información?",
+        "¿Quién lo pide?"
+      ],
+      "cuando_entra_arquitecto": "Requisitos regulatorios específicos (CNBV, salud)"
+    },
+    {
+      "sku": "SIM-BK-06",
+      "familia": "BK",
+      "nombre": "Prueba de restauración asistida",
+      "descripcion": "Simulacro trimestral: se restaura un sistema y se entrega un reporte de tiempos.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "cargo único por prueba",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 4500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Reporte en 5 días hábiles",
+      "tiempo_implementacion": "Por evento",
+      "requiere_alguno_de": [
+        "SIM-BK-01"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "Nunca hemos probado si los respaldos sirven",
+      "preguntas_clave": [
+        "¿Qué sistema quieren probar?",
+        "¿Tienen auditorías que lo pidan?"
+      ],
+      "cuando_entra_arquitecto": ""
+    },
+    {
+      "sku": "SIM-AWS-01",
+      "familia": "AWS",
+      "nombre": "Consumo de AWS en pesos",
+      "descripcion": "Uso de servicios de AWS facturado en pesos mexicanos, con factura local.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "según consumo",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según servicio de AWS",
+      "tiempo_implementacion": "Inmediato",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-AWS-03"
+      ],
+      "senal_del_cliente": "Pagamos AWS con tarjeta en dólares y contabilidad sufre cada mes",
+      "preguntas_clave": [
+        "¿Cuánto gastan al mes en AWS?",
+        "¿Qué servicios usan?"
+      ],
+      "cuando_entra_arquitecto": "Consumo mayor a $250,000 al mes"
+    },
+    {
+      "sku": "SIM-AWS-02",
+      "familia": "AWS",
+      "nombre": "Landing zone en AWS",
+      "descripcion": "Configuración inicial: cuentas, redes, seguridad y permisos listos para empezar a usar AWS.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "cargo único",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 85000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Entrega documentada",
+      "tiempo_implementacion": "3 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-AWS-03",
+        "SIM-AWS-05"
+      ],
+      "senal_del_cliente": "Queremos empezar en la nube, pero bien hecho desde el inicio",
+      "preguntas_clave": [
+        "¿Ya tienen cuentas de AWS?",
+        "¿Qué quieren llevar primero?",
+        "¿Tienen requisitos de seguridad?"
+      ],
+      "cuando_entra_arquitecto": "Más de 10 cuentas o requisitos regulatorios"
+    },
+    {
+      "sku": "SIM-AWS-03",
+      "familia": "AWS",
+      "nombre": "Soporte administrado AWS 24/7",
+      "descripcion": "Monitoreo, respuesta a incidentes y cambios en la cuenta del cliente. Cuesta 10% del consumo mensual, mínimo $12,000.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "% del consumo (mínimo mensual)",
+      "precio_mensual_mxn": 12000,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respuesta en 30 min a incidentes críticos",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [
+        "SIM-AWS-01"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "No tenemos a nadie que cuide la nube de noche",
+      "preguntas_clave": [
+        "¿Cuánto consumen al mes?",
+        "¿Quién atiende las fallas hoy?"
+      ],
+      "cuando_entra_arquitecto": "Consumo mayor a $250,000 al mes"
+    },
+    {
+      "sku": "SIM-AWS-04",
+      "familia": "AWS",
+      "nombre": "Optimización de costos AWS (FinOps)",
+      "descripcion": "Revisión del gasto en AWS con recomendaciones para bajarlo; ahorro típico de 15% a 30%.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "cargo único",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 35000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Reporte en 2 semanas",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [
+        "SIM-AWS-01"
+      ],
+      "se_recomienda_con": [
+        "SIM-AWS-03"
+      ],
+      "senal_del_cliente": "La factura de AWS sube cada mes y nadie sabe por qué",
+      "preguntas_clave": [
+        "¿Cuánto gastan al mes?",
+        "¿Cuánto ha crecido?",
+        "¿Quién crea recursos en la cuenta?"
+      ],
+      "cuando_entra_arquitecto": ""
+    },
+    {
+      "sku": "SIM-AWS-05",
+      "familia": "AWS",
+      "nombre": "Migración de servidores a AWS",
+      "descripcion": "Traslado de servidores existentes a AWS, con pruebas y regreso planeado si algo falla.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "cargo único por servidor",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 9500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 10,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Pruebas antes del cambio",
+      "tiempo_implementacion": "2 a 6 semanas",
+      "requiere_alguno_de": [
+        "SIM-AWS-02"
+      ],
+      "se_recomienda_con": [
+        "SIM-AWS-03",
+        "SIM-BK-01"
+      ],
+      "senal_del_cliente": "Queremos apagar nuestros servidores y pasar todo a AWS",
+      "preguntas_clave": [
+        "¿Cuántos servidores?",
+        "¿Qué sistemas corren?",
+        "¿Cuánto tiempo pueden estar sin servicio?"
+      ],
+      "cuando_entra_arquitecto": "Más de 10 servidores o aplicaciones sin documentar"
+    },
+    {
+      "sku": "SIM-AWS-06",
+      "familia": "AWS",
+      "nombre": "Arquitectura a la medida en AWS",
+      "descripcion": "Diseño de soluciones nuevas: modernización de aplicaciones, contenedores, analítica de datos.",
+      "tipo": "a la medida",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por proyecto",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según proyecto",
+      "tiempo_implementacion": "Según proyecto",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-AWS-02"
+      ],
+      "senal_del_cliente": "Queremos rehacer nuestra app para que escale",
+      "preguntas_clave": [
+        "¿Qué problema de negocio quieren resolver?",
+        "¿Quién desarrolla hoy?"
+      ],
+      "cuando_entra_arquitecto": "Siempre"
+    },
+    {
+      "sku": "SIM-AZ-01",
+      "familia": "AZ",
+      "nombre": "Consumo de Azure en pesos",
+      "descripcion": "Uso de servicios de Azure facturado en pesos mexicanos, con factura local.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "según consumo",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según servicio de Microsoft",
+      "tiempo_implementacion": "Inmediato",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-AZ-05"
+      ],
+      "senal_del_cliente": "Ya usamos Azure, pero lo paga cada área por su lado",
+      "preguntas_clave": [
+        "¿Cuánto gastan al mes en Azure?",
+        "¿Qué servicios usan?"
+      ],
+      "cuando_entra_arquitecto": "Consumo mayor a $250,000 al mes"
+    },
+    {
+      "sku": "SIM-AZ-02",
+      "familia": "AZ",
+      "nombre": "Landing zone en Azure",
+      "descripcion": "Configuración inicial de suscripciones, redes, seguridad e identidad conectada a Microsoft 365.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "cargo único",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 85000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Entrega documentada",
+      "tiempo_implementacion": "3 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-AZ-04",
+        "SIM-AZ-05"
+      ],
+      "senal_del_cliente": "Somos empresa Microsoft y queremos llevar los servidores a la nube",
+      "preguntas_clave": [
+        "¿Ya tienen suscripción de Azure?",
+        "¿Usan Microsoft 365?",
+        "¿Qué quieren llevar primero?"
+      ],
+      "cuando_entra_arquitecto": "Más de 10 suscripciones o requisitos regulatorios"
+    },
+    {
+      "sku": "SIM-AZ-03",
+      "familia": "AZ",
+      "nombre": "Escritorio virtual (Azure Virtual Desktop)",
+      "descripcion": "Windows en la nube: el empleado entra a su escritorio desde cualquier equipo. Incluye infraestructura para un usuario de oficina.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por usuario al mes",
+      "precio_mensual_mxn": 780,
+      "cargo_unico_mxn": 25000,
+      "cantidad_minima": 10,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.9% de disponibilidad",
+      "tiempo_implementacion": "3 semanas",
+      "requiere_alguno_de": [
+        "SIM-AZ-02"
+      ],
+      "se_recomienda_con": [
+        "SIM-M365-03"
+      ],
+      "senal_del_cliente": "Tenemos gente remota y laboratorios de cómputo que cuestan mucho",
+      "preguntas_clave": [
+        "¿Cuántos usuarios?",
+        "¿Qué programas usan?",
+        "¿Usan programas pesados (diseño, ingeniería)?"
+      ],
+      "cuando_entra_arquitecto": "Programas de diseño o ingeniería que necesitan GPU, o más de 200 usuarios"
+    },
+    {
+      "sku": "SIM-AZ-04",
+      "familia": "AZ",
+      "nombre": "Migración de servidores Windows a Azure",
+      "descripcion": "Traslado de servidores Windows o SQL Server a Azure, con pruebas.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "cargo único por servidor",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 9500,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 10,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Pruebas antes del cambio",
+      "tiempo_implementacion": "2 a 6 semanas",
+      "requiere_alguno_de": [
+        "SIM-AZ-02"
+      ],
+      "se_recomienda_con": [
+        "SIM-AZ-05",
+        "SIM-BK-01"
+      ],
+      "senal_del_cliente": "Nuestro Windows Server ya no tiene soporte",
+      "preguntas_clave": [
+        "¿Cuántos servidores?",
+        "¿Qué versión de Windows y SQL?",
+        "¿Cuánto tiempo pueden estar sin servicio?"
+      ],
+      "cuando_entra_arquitecto": "Más de 10 servidores o aplicaciones sin documentar"
+    },
+    {
+      "sku": "SIM-AZ-05",
+      "familia": "AZ",
+      "nombre": "Soporte administrado Azure 24/7",
+      "descripcion": "Monitoreo y atención de incidentes en Azure. Cuesta 10% del consumo mensual, mínimo $12,000.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "% del consumo (mínimo mensual)",
+      "precio_mensual_mxn": 12000,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respuesta en 30 min a incidentes críticos",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [
+        "SIM-AZ-01"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "Nadie en la empresa sabe administrar Azure",
+      "preguntas_clave": [
+        "¿Cuánto consumen al mes?",
+        "¿Quién atiende las fallas hoy?"
+      ],
+      "cuando_entra_arquitecto": "Consumo mayor a $250,000 al mes"
+    },
+    {
+      "sku": "SIM-AZ-06",
+      "familia": "AZ",
+      "nombre": "Arquitectura a la medida en Azure",
+      "descripcion": "Diseño de soluciones híbridas, de datos o de aplicaciones sobre Azure.",
+      "tipo": "a la medida",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por proyecto",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según proyecto",
+      "tiempo_implementacion": "Según proyecto",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-AZ-02"
+      ],
+      "senal_del_cliente": "Tenemos parte en Azure y parte en nuestro data center",
+      "preguntas_clave": [
+        "¿Qué problema de negocio quieren resolver?",
+        "¿Qué tienen hoy en cada lugar?"
+      ],
+      "cuando_entra_arquitecto": "Siempre"
+    },
+    {
+      "sku": "SIM-OCI-01",
+      "familia": "OCI",
+      "nombre": "Consumo de OCI en pesos",
+      "descripcion": "Uso de Oracle Cloud Infrastructure facturado en pesos mexicanos.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "según consumo",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según servicio de Oracle",
+      "tiempo_implementacion": "Inmediato",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-OCI-05"
+      ],
+      "senal_del_cliente": "Queremos usar nuestras licencias de Oracle en la nube",
+      "preguntas_clave": [
+        "¿Qué licencias de Oracle tienen?",
+        "¿Cuánto gastan hoy en soporte de Oracle?"
+      ],
+      "cuando_entra_arquitecto": "Consumo mayor a $250,000 al mes"
+    },
+    {
+      "sku": "SIM-OCI-02",
+      "familia": "OCI",
+      "nombre": "Base de datos Oracle administrada",
+      "descripcion": "Base de datos Oracle en OCI con parches, respaldos y monitoreo incluidos. Paquete de hasta 2 TB.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 18500,
+      "cargo_unico_mxn": 15000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "99.95% de disponibilidad",
+      "tiempo_implementacion": "3 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-OCI-03",
+        "SIM-BK-01"
+      ],
+      "senal_del_cliente": "El DBA se fue y nadie sabe mantener la base de datos",
+      "preguntas_clave": [
+        "¿Qué versión de Oracle?",
+        "¿Cuánto pesa la base?",
+        "¿Qué sistemas dependen de ella?"
+      ],
+      "cuando_entra_arquitecto": "Más de 2 TB, RAC o Data Guard"
+    },
+    {
+      "sku": "SIM-OCI-03",
+      "familia": "OCI",
+      "nombre": "Migración de base de datos Oracle a OCI",
+      "descripcion": "Traslado de una base Oracle de hasta 2 TB a OCI, con pruebas y plan de regreso.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "cargo único",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 120000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 1,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Pruebas antes del cambio",
+      "tiempo_implementacion": "4 a 6 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-OCI-02"
+      ],
+      "senal_del_cliente": "El hardware de la base de datos vence el próximo año",
+      "preguntas_clave": [
+        "¿Cuánto pesa la base?",
+        "¿Qué versión de Oracle?",
+        "¿Cuánto tiempo pueden estar sin servicio?"
+      ],
+      "cuando_entra_arquitecto": "Más de 2 TB o más de una base"
+    },
+    {
+      "sku": "SIM-OCI-04",
+      "familia": "OCI",
+      "nombre": "ERP Oracle en OCI (JD Edwards / E-Business Suite)",
+      "descripcion": "Traslado y operación del ERP de Oracle del cliente en OCI.",
+      "tipo": "a la medida",
+      "segmento": "corporativo",
+      "unidad_cobro": "por proyecto",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según proyecto",
+      "tiempo_implementacion": "8 a 20 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-OCI-05",
+        "SIM-DC-07"
+      ],
+      "senal_del_cliente": "Nuestro JD Edwards corre en servidores propios y ya no aguanta",
+      "preguntas_clave": [
+        "¿Qué ERP y versión?",
+        "¿Cuántos usuarios?",
+        "¿Qué personalizaciones tiene?"
+      ],
+      "cuando_entra_arquitecto": "Siempre"
+    },
+    {
+      "sku": "SIM-OCI-05",
+      "familia": "OCI",
+      "nombre": "Soporte administrado OCI 24/7",
+      "descripcion": "Monitoreo y atención de incidentes en OCI. Cuesta 10% del consumo mensual, mínimo $12,000.",
+      "tipo": "estándar",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "% del consumo (mínimo mensual)",
+      "precio_mensual_mxn": 12000,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Respuesta en 30 min a incidentes críticos",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [
+        "SIM-OCI-01",
+        "SIM-OCI-02"
+      ],
+      "se_recomienda_con": [],
+      "senal_del_cliente": "No tenemos quién vigile la base de datos de noche",
+      "preguntas_clave": [
+        "¿Cuánto consumen al mes?",
+        "¿Quién atiende las fallas hoy?"
+      ],
+      "cuando_entra_arquitecto": "Consumo mayor a $250,000 al mes"
+    },
+    {
+      "sku": "SIM-IA-01",
+      "familia": "IA",
+      "nombre": "Agente de atención por WhatsApp y web",
+      "descripcion": "Asistente que responde dudas frecuentes, agenda citas y pasa a una persona cuando hace falta. Incluye 2,000 conversaciones al mes; las adicionales cuestan $4 cada una.",
+      "tipo": "configurable",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 8500,
+      "cargo_unico_mxn": 45000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Disponible 24/7",
+      "tiempo_implementacion": "3 a 4 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-IA-04"
+      ],
+      "senal_del_cliente": "Recibimos cientos de mensajes al día con las mismas preguntas",
+      "preguntas_clave": [
+        "¿Cuántos mensajes reciben al día?",
+        "¿Por qué canal?",
+        "¿Qué preguntan más?",
+        "¿Tiene que consultar algún sistema?"
+      ],
+      "cuando_entra_arquitecto": "Si tiene que conectarse a un sistema interno (reservas, ERP, CRM)"
+    },
+    {
+      "sku": "SIM-IA-02",
+      "familia": "IA",
+      "nombre": "Agente de conocimiento interno",
+      "descripcion": "Asistente que responde dudas de los empleados con los documentos de la empresa (manuales, políticas, procesos). Hasta 100 usuarios.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 9900,
+      "cargo_unico_mxn": 60000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": 100,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Disponible 24/7",
+      "tiempo_implementacion": "4 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-03"
+      ],
+      "senal_del_cliente": "Los nuevos tardan meses en aprender los procesos; todo está en PDFs",
+      "preguntas_clave": [
+        "¿Cuántos documentos y en qué formato?",
+        "¿Cuántos empleados lo usarían?",
+        "¿Hay información confidencial?"
+      ],
+      "cuando_entra_arquitecto": "Más de 100 usuarios o documentos con permisos distintos por área"
+    },
+    {
+      "sku": "SIM-IA-03",
+      "familia": "IA",
+      "nombre": "Agente de mesa de ayuda TI",
+      "descripcion": "Asistente que resuelve solicitudes comunes de TI (contraseñas, accesos, dudas) y abre tickets.",
+      "tipo": "configurable",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por mes",
+      "precio_mensual_mxn": 8900,
+      "cargo_unico_mxn": 50000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": 12,
+      "nivel_servicio": "Disponible 24/7",
+      "tiempo_implementacion": "3 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-M365-07"
+      ],
+      "senal_del_cliente": "El área de sistemas pasa el día cambiando contraseñas",
+      "preguntas_clave": [
+        "¿Cuántos tickets al mes?",
+        "¿Qué herramienta de tickets usan?",
+        "¿Cuáles son las solicitudes más comunes?"
+      ],
+      "cuando_entra_arquitecto": "Integración con herramientas de tickets distintas a las estándar"
+    },
+    {
+      "sku": "SIM-IA-04",
+      "familia": "IA",
+      "nombre": "Taller de casos de uso de IA",
+      "descripcion": "Dos sesiones con el cliente para encontrar dónde la IA ahorra más tiempo y dinero, con un plan priorizado.",
+      "tipo": "estándar",
+      "segmento": "PyME, mediana, corporativo",
+      "unidad_cobro": "cargo único",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": 25000,
+      "cantidad_minima": 1,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Entrega de plan en 1 semana",
+      "tiempo_implementacion": "2 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-IA-01",
+        "SIM-IA-02"
+      ],
+      "senal_del_cliente": "Queremos usar IA, pero no sabemos por dónde empezar",
+      "preguntas_clave": [
+        "¿Qué áreas tienen más trabajo repetitivo?",
+        "¿Quién decide?"
+      ],
+      "cuando_entra_arquitecto": ""
+    },
+    {
+      "sku": "SIM-IA-05",
+      "familia": "IA",
+      "nombre": "Agente de IA a la medida",
+      "descripcion": "Agente conectado a los sistemas del cliente (ERP, CRM, bases de datos) para automatizar un proceso completo.",
+      "tipo": "a la medida",
+      "segmento": "mediana, corporativo",
+      "unidad_cobro": "por proyecto",
+      "precio_mensual_mxn": null,
+      "cargo_unico_mxn": null,
+      "cantidad_minima": null,
+      "cantidad_maxima": null,
+      "plazo_minimo_meses": null,
+      "nivel_servicio": "Según proyecto",
+      "tiempo_implementacion": "6 a 12 semanas",
+      "requiere_alguno_de": [],
+      "se_recomienda_con": [
+        "SIM-IA-04"
+      ],
+      "senal_del_cliente": "Queremos que la IA capture pedidos directo en nuestro ERP",
+      "preguntas_clave": [
+        "¿Qué proceso quieren automatizar?",
+        "¿Qué sistemas intervienen?",
+        "¿Qué pasa si el agente se equivoca?"
+      ],
+      "cuando_entra_arquitecto": "Siempre"
+    }
+  ],
+  "paquetes": [
+    {
+      "id": "PAQ-01",
+      "nombre": "Oficina moderna y segura",
+      "para_quien": "PyME de 10 a 100 personas sin correo empresarial o con problemas de seguridad.",
+      "productos": [
+        "SIM-M365-03",
+        "SIM-BK-02",
+        "SIM-M365-07"
+      ],
+      "descuento_pct": 8
+    },
+    {
+      "id": "PAQ-02",
+      "nombre": "Blindaje contra ransomware",
+      "para_quien": "Empresas que ya sufrieron un ataque o que respaldan en discos externos.",
+      "productos": [
+        "SIM-BK-01",
+        "SIM-BK-03",
+        "SIM-BK-02",
+        "SIM-BK-06"
+      ],
+      "descuento_pct": 8
+    },
+    {
+      "id": "PAQ-03",
+      "nombre": "Adiós al cuarto de servidores",
+      "para_quien": "Servidores propios en la oficina que sufren cortes de luz o calor.",
+      "productos": [
+        "SIM-DC-01",
+        "SIM-DC-08",
+        "SIM-BK-01"
+      ],
+      "descuento_pct": 8
+    },
+    {
+      "id": "PAQ-04",
+      "nombre": "Continuidad del negocio",
+      "para_quien": "Sistemas críticos que no pueden detenerse más de unas horas.",
+      "productos": [
+        "SIM-DC-04",
+        "SIM-DC-07",
+        "SIM-BK-01"
+      ],
+      "descuento_pct": 8
+    },
+    {
+      "id": "PAQ-05",
+      "nombre": "Arranque en AWS",
+      "para_quien": "Primer paso a la nube de AWS con hasta 5 servidores.",
+      "productos": [
+        "SIM-AWS-02",
+        "SIM-AWS-05",
+        "SIM-AWS-03"
+      ],
+      "descuento_pct": 8
+    },
+    {
+      "id": "PAQ-06",
+      "nombre": "Arranque en Azure",
+      "para_quien": "Empresas Microsoft que llevan servidores y escritorios a la nube.",
+      "productos": [
+        "SIM-AZ-02",
+        "SIM-AZ-04",
+        "SIM-AZ-03",
+        "SIM-AZ-05"
+      ],
+      "descuento_pct": 8
+    },
+    {
+      "id": "PAQ-07",
+      "nombre": "IA para atender clientes",
+      "para_quien": "Negocios con muchos mensajes repetidos de clientes.",
+      "productos": [
+        "SIM-IA-04",
+        "SIM-IA-01"
+      ],
+      "descuento_pct": 8
+    }
+  ],
+  "condiciones_comerciales": [
+    {
+      "concepto": "Moneda e IVA",
+      "regla": "Todos los precios están en pesos mexicanos (MXN) y no incluyen IVA (16%)."
+    },
+    {
+      "concepto": "Plazo de 12 meses",
+      "regla": "Precio de lista."
+    },
+    {
+      "concepto": "Plazo de 24 meses",
+      "regla": "5% de descuento en las mensualidades."
+    },
+    {
+      "concepto": "Plazo de 36 meses",
+      "regla": "10% de descuento en las mensualidades."
+    },
+    {
+      "concepto": "Paquetes",
+      "regla": "Los paquetes tienen el descuento indicado en las mensualidades de sus productos."
+    },
+    {
+      "concepto": "Volumen Microsoft 365",
+      "regla": "3% de descuento adicional en licencias a partir de 100 usuarios."
+    },
+    {
+      "concepto": "Descuento máximo del vendedor",
+      "regla": "Hasta 10% en total sin autorización; más requiere autorización del gerente."
+    },
+    {
+      "concepto": "Cargos únicos",
+      "regla": "No tienen descuento por plazo; se pueden pagar en 3 mensualidades."
+    },
+    {
+      "concepto": "Productos según consumo",
+      "regla": "Se cotizan con el consumo estimado del cliente y se cobran por lo que realmente usa."
+    },
+    {
+      "concepto": "Productos a la medida",
+      "regla": "No tienen precio de lista. La propuesta la arma un arquitecto de soluciones."
+    },
+    {
+      "concepto": "Vigencia de la propuesta",
+      "regla": "30 días naturales."
+    }
+  ],
+  "reglas_escalamiento": [
+    {
+      "id": "ESC-01",
+      "cuando_entra_un_arquitecto": "Cualquier producto de tipo «a la medida»."
+    },
+    {
+      "id": "ESC-02",
+      "cuando_entra_un_arquitecto": "Más de 300 usuarios en Microsoft 365 o licencias de distintos tipos mezcladas."
+    },
+    {
+      "id": "ESC-03",
+      "cuando_entra_un_arquitecto": "Migración de más de 10 servidores o de aplicaciones sin documentación."
+    },
+    {
+      "id": "ESC-04",
+      "cuando_entra_un_arquitecto": "Requisitos regulatorios: CNBV, datos de salud, datos personales sensibles o pagos con tarjeta."
+    },
+    {
+      "id": "ESC-05",
+      "cuando_entra_un_arquitecto": "Integración con sistemas internos del cliente (ERP, CRM, sistemas propios)."
+    },
+    {
+      "id": "ESC-06",
+      "cuando_entra_un_arquitecto": "Solución que combina dos o más nubes o nube con data center (híbrida)."
+    },
+    {
+      "id": "ESC-07",
+      "cuando_entra_un_arquitecto": "Niveles de servicio más exigentes que los estándar: RPO menor a 15 min, RTO menor a 4 h o disponibilidad mayor a 99.95%."
+    },
+    {
+      "id": "ESC-08",
+      "cuando_entra_un_arquitecto": "Bases de datos Oracle de más de 2 TB o con RAC / Data Guard."
+    },
+    {
+      "id": "ESC-09",
+      "cuando_entra_un_arquitecto": "Presupuesto estimado mayor a $250,000 MXN al mes."
+    },
+    {
+      "id": "ESC-10",
+      "cuando_entra_un_arquitecto": "El cliente pide un diseño de arquitectura o un documento técnico formal."
+    }
+  ],
+  "casos_clientes": [
+    {
+      "id": "CASO-01",
+      "empresa": "Clínica Dental Sonrisa Norte",
+      "industria": "Salud",
+      "ciudad": "Monterrey",
+      "empleados": 25,
+      "mensaje_inicial": "Usamos correos de Gmail personales y el mes pasado una recepcionista abrió un archivo y se cifraron las computadoras. Queremos algo más seguro.",
+      "informacion_que_falta": "Número exacto de usuarios y equipos; si guardan expedientes de pacientes; cómo respaldan hoy.",
+      "tipo_de_caso": "estándar"
+    },
+    {
+      "id": "CASO-02",
+      "empresa": "Aceros del Valle",
+      "industria": "Manufactura",
+      "ciudad": "Apodaca",
+      "empleados": 180,
+      "mensaje_inicial": "Nuestro ERP corre en dos servidores en un cuarto de la planta. Se nos fue la luz dos veces este año y paramos la operación.",
+      "informacion_que_falta": "Recursos de los servidores; cuántas horas pueden estar sin sistema; si las sucursales se conectan al ERP.",
+      "tipo_de_caso": "mixto"
+    },
+    {
+      "id": "CASO-03",
+      "empresa": "PagoFácil MX",
+      "industria": "Fintech",
+      "ciudad": "Ciudad de México",
+      "empleados": 40,
+      "mensaje_inicial": "La factura de AWS nos subió 60% en seis meses y nadie sabe por qué. Además tenemos que cumplir con la CNBV.",
+      "informacion_que_falta": "Gasto mensual en AWS; quién administra la cuenta; qué requisitos exactos pide la CNBV.",
+      "tipo_de_caso": "mixto"
+    },
+    {
+      "id": "CASO-04",
+      "empresa": "Universidad del Noreste",
+      "industria": "Educación",
+      "ciudad": "San Pedro Garza García",
+      "empleados": 1200,
+      "mensaje_inicial": "Queremos que maestros y personal tengan correo y Teams, y escritorios virtuales para los laboratorios de cómputo.",
+      "informacion_que_falta": "Usuarios por tipo; programas de los laboratorios; licencias actuales y cuándo vencen.",
+      "tipo_de_caso": "a la medida"
+    },
+    {
+      "id": "CASO-05",
+      "empresa": "Tacos El Güero",
+      "industria": "Restaurantes",
+      "ciudad": "Monterrey",
+      "empleados": 600,
+      "mensaje_inicial": "Tenemos 45 sucursales y recibimos cientos de WhatsApps al día preguntando horarios, menú y para reservar.",
+      "informacion_que_falta": "Mensajes por día; si las reservas están en algún sistema; preguntas más frecuentes.",
+      "tipo_de_caso": "estándar"
+    },
+    {
+      "id": "CASO-06",
+      "empresa": "Seguros Confianza",
+      "industria": "Seguros",
+      "ciudad": "Guadalajara",
+      "empleados": 900,
+      "mensaje_inicial": "Tenemos una base de datos Oracle de 6 TB en servidores propios y el hardware vence el próximo año.",
+      "informacion_que_falta": "Versión de Oracle; si usan RAC o Data Guard; sistemas que dependen de la base; ventana de mantenimiento.",
+      "tipo_de_caso": "a la medida"
+    },
+    {
+      "id": "CASO-07",
+      "empresa": "Contadores Asociados Garza",
+      "industria": "Servicios profesionales",
+      "ciudad": "Monterrey",
+      "empleados": 12,
+      "mensaje_inicial": "Necesitamos respaldar los archivos de nuestros clientes; el SAT nos pide guardarlos 5 años.",
+      "informacion_que_falta": "Cuántos TB; dónde están los archivos hoy; si usan Microsoft 365.",
+      "tipo_de_caso": "estándar"
+    },
+    {
+      "id": "CASO-08",
+      "empresa": "AutoPartes Regio",
+      "industria": "Automotriz",
+      "ciudad": "Ramos Arizpe",
+      "empleados": 2500,
+      "mensaje_inicial": "Tenemos aplicaciones en Azure y en nuestro data center. Queremos un solo plan de recuperación ante desastres y un asistente que conteste dudas de nuestros procedimientos.",
+      "informacion_que_falta": "Sistemas críticos y tiempos de recuperación; tamaño de los documentos; cuántos empleados usarían el asistente.",
+      "tipo_de_caso": "a la medida"
+    },
+    {
+      "id": "CASO-09",
+      "empresa": "Agencia Brava",
+      "industria": "Marketing",
+      "ciudad": "Monterrey",
+      "empleados": 30,
+      "mensaje_inicial": "Trabajamos con archivos muy pesados entre todo el equipo y queremos empezar a usar Copilot.",
+      "informacion_que_falta": "Licencia actual de Microsoft; cuánto pesan los archivos; quiénes usarían Copilot.",
+      "tipo_de_caso": "estándar"
+    },
+    {
+      "id": "CASO-10",
+      "empresa": "Hospital San Rafael",
+      "industria": "Salud",
+      "ciudad": "Monterrey",
+      "empleados": 400,
+      "mensaje_inicial": "Queremos sacar el expediente clínico de nuestro site, pero tiene datos de salud y no sé qué nos pide la ley.",
+      "informacion_que_falta": "Sistema de expediente y proveedor; volumen de datos; requisitos de la NOM y de datos personales.",
+      "tipo_de_caso": "a la medida"
+    }
+  ]
+}

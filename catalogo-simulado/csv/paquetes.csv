@@ -1,0 +1,8 @@
+﻿id,nombre,para_quien,productos,descuento_pct
+PAQ-01,Oficina moderna y segura,PyME de 10 a 100 personas sin correo empresarial o con problemas de seguridad.,SIM-M365-03|SIM-BK-02|SIM-M365-07,8
+PAQ-02,Blindaje contra ransomware,Empresas que ya sufrieron un ataque o que respaldan en discos externos.,SIM-BK-01|SIM-BK-03|SIM-BK-02|SIM-BK-06,8
+PAQ-03,Adiós al cuarto de servidores,Servidores propios en la oficina que sufren cortes de luz o calor.,SIM-DC-01|SIM-DC-08|SIM-BK-01,8
+PAQ-04,Continuidad del negocio,Sistemas críticos que no pueden detenerse más de unas horas.,SIM-DC-04|SIM-DC-07|SIM-BK-01,8
+PAQ-05,Arranque en AWS,Primer paso a la nube de AWS con hasta 5 servidores.,SIM-AWS-02|SIM-AWS-05|SIM-AWS-03,8
+PAQ-06,Arranque en Azure,Empresas Microsoft que llevan servidores y escritorios a la nube.,SIM-AZ-02|SIM-AZ-04|SIM-AZ-03|SIM-AZ-05,8
+PAQ-07,IA para atender clientes,Negocios con muchos mensajes repetidos de clientes.,SIM-IA-04|SIM-IA-01,8
