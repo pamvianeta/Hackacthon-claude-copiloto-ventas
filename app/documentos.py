@@ -102,6 +102,8 @@ def propuesta(sesion, r: dict, impacto: dict) -> str:
                       f"Vigencia: 30 días naturales (hasta el {_fecha(c['vigencia_hasta'])}) · "
                       f"Plazo del contrato: {c['plazo_meses']} meses")
     doc.add_paragraph(f"Cliente: {cli['empresa']} · {cli['industria']} · {cli['ciudad']} · {cli['empleados']} empleados")
+    if getattr(sesion, "vendedor", ""):
+        doc.add_paragraph(f"Elaboró: {sesion.vendedor} · Ejecutivo comercial")
     necesidad = next((n for n in r["notas"] if n["tema"] == "Necesidad principal" and n["estado"] != "faltante"), None)
     if necesidad:
         doc.add_paragraph(f"Necesidad: {necesidad['resumen']}.")

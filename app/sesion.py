@@ -12,16 +12,17 @@ import time
 from datetime import datetime
 
 from app import aprendizaje, config, db, extraccion
-from app.pipeline import DIR_GUIONES, analizar, llamadas
+from app.pipeline import DIR_GUIONES, analizar, fusionar_cierre, llamadas
 
 LINEA_BASE = {"sesiones": 3, "dias_hasta_propuesta": 21, "arquitecto": "casi siempre"}
 
 
 class Sesion:
-    def __init__(self, enviar, cliente: dict, modo: str):
+    def __init__(self, enviar, cliente: dict, modo: str, vendedor: str = ""):
         self.enviar = enviar  # async (evento, datos)
         self.cliente = cliente
         self.modo = modo
+        self.vendedor = vendedor
         self.frases: list[dict] = []
         self.confirmados: set[str] = set()
         self.descartados: set[str] = set()
@@ -184,15 +185,15 @@ class Sesion:
         self.pausar_simulacion()
         while self.analizando:
             await asyncio.sleep(0.1)
-        r = None
-        if self.modo != "repeticion":
+        previa = self.resultado["_extraccion"] if self.resultado else {}
+        if self.modo != "repeticion" and self.frases:
             try:
-                r = await self._correr(final=True, solo_confirmados=set(self.confirmados))
+                final = await asyncio.to_thread(extraccion.extraer, list(self.frases), self.cliente,
+                                                aprendizaje.ejemplos(), True)
+                previa = fusionar_cierre(final, previa, self.confirmados)
             except extraccion.ErrorIA as e:
                 await self.enviar("error", {"mensaje": f"Cierre sin IA ({e}); se usa el último análisis."})
-        if r is None:
-            previa = self.resultado["_extraccion"] if self.resultado else {}
-            r = await self._correr(solo_confirmados=set(self.confirmados), previa=previa)
+        r = await self._correr(solo_confirmados=set(self.confirmados), previa=previa)
         minutos = round((time.monotonic() - self.inicio) / 60, 1)
         t, c = r["triaje"], r["cotizacion"]
         impacto = {

@@ -1,7 +1,7 @@
 """Servidor del Copiloto Comercial: página, API de expedientes/aprendizajes y WebSocket de la llamada.
 
 Mensajes del navegador por WebSocket (/ws), en JSON con campo "tipo":
-  iniciar  {cliente_id, modo: microfono|simulacion|repeticion}
+  iniciar  {cliente_id, modo: microfono|simulacion|repeticion, vendedor (nombre; inicio de sesión simulado)}
   frase    {hablante: auto|cliente|vendedor, texto}   (modo micrófono; auto = lo decide Claude)
   simular  {}  /  pausar {}                           (guion cada SEGUNDOS_POR_LINEA)
   feedback {sku, correcto: true|false}
@@ -106,7 +106,7 @@ async def ws(websocket: WebSocket):
                     continue
                 if sesion:
                     sesion.detener()
-                sesion = Sesion(enviar, cliente, modo)
+                sesion = Sesion(enviar, cliente, modo, vendedor=str(msg.get("vendedor") or "")[:80])
                 await sesion.iniciar()
             elif sesion is None:
                 await enviar("error", {"mensaje": "Primero inicia una sesión"})

@@ -18,15 +18,40 @@
   </div>
   <div class="barra-der">
     <span id="modo" class="chip modo" hidden></span>
-    <button id="ver-aprendido" class="boton fantasma claro">Lo que ha aprendido</button>
+    <button id="ver-aprendido" class="boton fantasma claro" hidden>Lo que ha aprendido</button>
+    <span id="usuario" class="usuario" hidden></span>
+    <button id="salir" class="boton fantasma claro" hidden>Salir</button>
   </div>
 </header>
 <div id="aviso" class="aviso" hidden></div>
 
 <main>
+  <!-- Entrar (inicio de sesión simulado) -->
+  <section id="entrar" class="entrar">
+    <div class="entrar-marca">
+      <span class="marca-punto grande"></span>
+      <h1>Copiloto Comercial</h1>
+      <p>Tu copiloto en cada llamada con clientes.</p>
+      <ul class="beneficios">
+        <li>Escucha la llamada y toma notas por ti</li>
+        <li>Te dice qué preguntar para cerrar en una sola sesión</li>
+        <li>Propuesta en minutos, con precios del catálogo</li>
+      </ul>
+    </div>
+    <form id="form-entrar" class="tarjeta entrar-form">
+      <h2>Entrar</h2>
+      <label class="campo">Correo corporativo
+        <input id="correo" type="email" autocomplete="username" placeholder="nombre.apellido@empresa.com" required>
+      </label>
+      <button class="boton primario grande" type="submit">Entrar con mi cuenta corporativa</button>
+      <p class="tenue chico nota-prototipo">Prototipo · datos simulados. Inicio de sesión simulado: en producción se usa
+        la cuenta de Microsoft 365 de la empresa (Microsoft Entra ID), con permisos por rol.</p>
+    </form>
+  </section>
+
   <!-- Preparar la reunión -->
-  <section id="preparar" class="preparar tarjeta">
-    <h1>Preparar la reunión</h1>
+  <section id="preparar" class="preparar tarjeta" hidden>
+    <h1 id="saludo">Preparar la reunión</h1>
     <p class="tenue">Elige el expediente del cliente y cómo entra la llamada.</p>
 
     <label class="campo"><span class="paso">1</span> Expediente del cliente

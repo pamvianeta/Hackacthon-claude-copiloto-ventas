@@ -8,7 +8,7 @@ const dinero = (n) => (n == null ? "—" : n.toLocaleString("es-MX", { style: "c
 const MODOS = { microfono: "🎙 Micrófono", simulacion: "▶ Simulación (con IA)", repeticion: "⟲ Repetición (sin IA)" };
 
 const st = {
-  ws: null, modo: null, hablante: "auto", analizando: false,
+  ws: null, modo: null, hablante: "auto", analizando: false, usuario: null,
   vistos: {},            // por sección: claves ya mostradas (para resaltar lo nuevo)
   ultimaFeedback: {},
 };
@@ -337,7 +337,35 @@ $("#preparar").addEventListener("change", revisarPreparacion);
 $("#empezar").addEventListener("click", () => {
   aviso("");
   ponerModo(modoElegido());
-  enviar({ tipo: "iniciar", cliente_id: $("#cliente").value, modo: modoElegido() });
+  enviar({ tipo: "iniciar", cliente_id: $("#cliente").value, modo: modoElegido(), vendedor: st.usuario });
+});
+
+// ------------------------------------------------------------------ entrar (inicio de sesión SIMULADO)
+// En producción lo resuelve Microsoft Entra ID (ver docs/ARQUITECTURA.md); aquí solo se toma el nombre del correo.
+function nombreDesdeCorreo(correo) {
+  return correo.split("@")[0].split(/[._-]+/).filter(Boolean)
+    .map((p) => p.charAt(0).toUpperCase() + p.slice(1).toLowerCase()).join(" ");
+}
+function mostrarPreparar(nombre) {
+  st.usuario = nombre;
+  $("#entrar").hidden = true;
+  $("#preparar").hidden = false;
+  $("#saludo").textContent = `Hola, ${nombre.split(" ")[0]}. Prepara tu reunión`;
+  const u = $("#usuario");
+  u.textContent = nombre;
+  u.dataset.iniciales = nombre.split(" ").map((p) => p[0]).slice(0, 2).join("");
+  u.hidden = $("#salir").hidden = $("#ver-aprendido").hidden = false;
+}
+$("#form-entrar").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const nombre = nombreDesdeCorreo($("#correo").value.trim());
+  if (!nombre) return;
+  try { sessionStorage.setItem("copiloto_usuario", nombre); } catch (_) {}
+  mostrarPreparar(nombre);
+});
+$("#salir").addEventListener("click", () => {
+  try { sessionStorage.removeItem("copiloto_usuario"); } catch (_) {}
+  location.reload();
 });
 
 $("#ver-aprendido").addEventListener("click", async () => {
@@ -361,5 +389,9 @@ $("#ver-aprendido").addEventListener("click", async () => {
   if (m) m.checked = true;
   if (!salud.clave_configurada) aviso("No hay clave de Claude configurada: usa «Repetición (sin IA)».");
   revisarPreparacion();
+  let guardado = null;
+  try { guardado = sessionStorage.getItem("copiloto_usuario"); } catch (_) {}
+  if (guardado) mostrarPreparar(guardado);
+  else $("#correo").focus();
   conectar();
 })();
