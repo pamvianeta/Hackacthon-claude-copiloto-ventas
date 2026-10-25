@@ -31,6 +31,19 @@ def extraccion_grabada(caso: str, n_frases: int) -> dict:
     return previos[-1]["extraccion"] if previos else {}
 
 
+def fusionar_cierre(final: dict, previa: dict, confirmados: set) -> dict:
+    """La pasada final (modelo fuerte) no puede borrar lo que el vendedor ya confirmó con ✓:
+    los productos confirmados que no repita, y los hechos que no mencione, se toman de la última
+    extracción en vivo (sus citas se vuelven a verificar después, igual que todo)."""
+    out = dict(final)
+    skus = {p["sku"] for p in final.get("productos", [])}
+    out["productos"] = final.get("productos", []) + [
+        p for p in previa.get("productos", []) if p["sku"] in confirmados and p["sku"] not in skus]
+    nombres = {h["nombre"] for h in final.get("hechos", [])}
+    out["hechos"] = final.get("hechos", []) + [h for h in previa.get("hechos", []) if h["nombre"] not in nombres]
+    return out
+
+
 def analizar(frases: list[dict], modo: str, caso: str | None = None, cliente: dict | None = None,
              aprendizajes: list[dict] | None = None, final: bool = False,
              descartados: set | None = None, solo_confirmados: set | None = None,

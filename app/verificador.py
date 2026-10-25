@@ -46,6 +46,50 @@ def cita_valida(cita: str, tokens_transcripcion: list[str]) -> bool:
     return puntaje_cita(cita, tokens_transcripcion) >= UMBRAL
 
 
+_PALABRAS = {"un": 1, "uno": 1, "una": 1, "dos": 2, "tres": 3, "cuatro": 4, "cinco": 5, "seis": 6, "siete": 7,
+             "ocho": 8, "nueve": 9, "diez": 10, "once": 11, "doce": 12, "trece": 13, "catorce": 14, "quince": 15,
+             "dieciseis": 16, "diecisiete": 17, "dieciocho": 18, "diecinueve": 19, "veinte": 20, "treinta": 30,
+             "cuarenta": 40, "cincuenta": 50, "sesenta": 60, "setenta": 70, "ochenta": 80, "noventa": 90,
+             "cien": 100, "ciento": 100, "doscientos": 200, "trescientos": 300, "cuatrocientos": 400,
+             "quinientos": 500, "seiscientos": 600, "setecientos": 700, "ochocientos": 800, "novecientos": 900}
+_PALABRAS.update({f"veinti{u}": 20 + v for u, v in [("uno", 1), ("un", 1), ("dos", 2), ("tres", 3), ("cuatro", 4),
+                                                    ("cinco", 5), ("seis", 6), ("siete", 7), ("ocho", 8), ("nueve", 9)]})
+
+
+def numeros_en(texto: str) -> set[float]:
+    """Números que aparecen en un texto, en dígitos («2 TB», «250,000», «99.95») o en palabras
+    («dos horas», «treinta y seis», «300 mil»)."""
+    nums = set()
+    crudo = re.sub(r"(\d),(\d{3})\b", r"\1\2", (texto or "").lower())
+    for m in re.finditer(r"(\d+(?:\.\d+)?)\s*(mil|millones)?", crudo):
+        nums.add(float(m.group(1)) * {"mil": 1e3, "millones": 1e6}.get(m.group(2), 1))
+    tokens = normalizar(texto)
+    for i, w in enumerate(tokens):
+        if w not in _PALABRAS:
+            continue
+        v = _PALABRAS[w]
+        if i + 2 < len(tokens) and tokens[i + 1] == "y" and _PALABRAS.get(tokens[i + 2], 99) < 10:
+            v += _PALABRAS[tokens[i + 2]]
+        nums.add(float(v))
+        if i + 1 < len(tokens) and tokens[i + 1] == "mil":
+            nums.add(float(v) * 1000)
+    return nums
+
+
+def numero_respaldado(valor, cita: str) -> bool:
+    return float(valor) in numeros_en(cita)
+
+
+def _hay_evidencia(definicion: dict, valor, cita: str) -> bool:
+    """Para valores sensibles (p. ej. regulación = salud) la cita debe contener una palabra que lo pruebe
+    (lista en reglas.json → hechos → evidencia)."""
+    claves = definicion.get("evidencia", {}).get(valor)
+    if not claves:
+        return True
+    texto = " ".join(normalizar(cita))
+    return any(" ".join(normalizar(c)) in texto for c in claves)
+
+
 def _valor_hecho(definicion: dict, crudo):
     """Convierte el valor que escribió Claude al tipo del hecho. None si no es válido."""
     tipo = definicion["tipo"]
@@ -82,6 +126,9 @@ def verificar(extraccion: dict, frases: list[dict], catalogo, reglas: dict) -> d
         elif not cita_valida(p.get("cita", ""), T):
             bloquear("producto", p, "La cita no aparece en la transcripción")
         else:
+            if p.get("cantidad") is not None and not numero_respaldado(p["cantidad"], p["cita"]):
+                bloquear("cantidad", p, f"La cantidad {p['cantidad']:g} no aparece en la cita; se preguntará")
+                p = dict(p, cantidad=None)
             productos.append(p)
 
     hechos = {}
@@ -95,6 +142,10 @@ def verificar(extraccion: dict, frases: list[dict], catalogo, reglas: dict) -> d
             bloquear("hecho", h, f"Valor no válido para {h['nombre']}")
         elif not cita_valida(h.get("cita", ""), T):
             bloquear("hecho", h, "La cita no aparece en la transcripción")
+        elif definicion["tipo"] == "numero" and not numero_respaldado(valor, h["cita"]):
+            bloquear("hecho", h, f"El número {valor} no aparece en la cita")
+        elif not _hay_evidencia(definicion, valor, h["cita"]):
+            bloquear("hecho", h, f"La cita no menciona nada que pruebe «{valor}»")
         else:
             hechos[h["nombre"]] = {"valor": valor, "cita": h["cita"]}
 

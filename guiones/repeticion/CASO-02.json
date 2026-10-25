@@ -29,7 +29,7 @@
       "tras_frases": 6,
       "extraccion": {
         "productos": [
-          {"sku": "SIM-DC-04", "cantidad": 1, "cita": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria", "dile_al_cliente": "Le damos servidores en nuestro centro de datos con la capacidad que hoy usa, sin que vuelva a comprar equipo."},
+          {"sku": "SIM-DC-04", "cantidad": null, "cita": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria", "dile_al_cliente": "Le damos servidores en nuestro centro de datos con la capacidad que hoy usa, sin que vuelva a comprar equipo."},
           {"sku": "SIM-DC-07", "cantidad": 2, "cita": "No podemos estar más de dos horas sin sistema", "dile_al_cliente": "Tendrá una copia lista en otro centro de datos para seguir operando si algo falla."}
         ],
         "hechos": [
@@ -61,11 +61,11 @@
       "tras_frases": 13,
       "extraccion": {
         "productos": [
-          {"sku": "SIM-DC-04", "cantidad": 1, "cita": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria", "dile_al_cliente": "Le damos servidores en nuestro centro de datos con la capacidad que hoy usa, sin que vuelva a comprar equipo."},
+          {"sku": "SIM-DC-04", "cantidad": null, "cita": "Entre los dos servidores son 24 procesadores y unos 48 GB de memoria", "dile_al_cliente": "Le damos servidores en nuestro centro de datos con la capacidad que hoy usa, sin que vuelva a comprar equipo."},
           {"sku": "SIM-DC-07", "cantidad": 2, "cita": "No podemos estar más de dos horas sin sistema", "dile_al_cliente": "Tendrá una copia lista en otro centro de datos para seguir operando si algo falla."},
-          {"sku": "SIM-DC-08", "cantidad": 1, "cita": "las tres sucursales se conectan al ERP todos los días", "dile_al_cliente": "Sus sucursales siguen entrando al sistema por una conexión privada y estable."},
+          {"sku": "SIM-DC-08", "cantidad": null, "cita": "las tres sucursales se conectan al ERP todos los días", "dile_al_cliente": "Sus sucursales siguen entrando al sistema por una conexión privada y estable."},
           {"sku": "SIM-BK-01", "cantidad": 2, "cita": "Respaldamos a mano en un disco externo, son unos 2 TB", "dile_al_cliente": "Sus respaldos quedan en la nube y nadie los puede borrar, ni un virus."},
-          {"sku": "SIM-BK-03", "cantidad": 2, "cita": "Respaldamos a mano en un disco externo", "dile_al_cliente": "Los servidores se respaldan solos todos los días, sin depender de una persona."},
+          {"sku": "SIM-BK-03", "cantidad": 2, "cita": "Nuestro ERP corre en dos servidores", "dile_al_cliente": "Los servidores se respaldan solos todos los días, sin depender de una persona."},
           {"sku": "SIM-DC-09", "cantidad": null, "cita": "queremos mudar todo el site sin detener la planta", "dile_al_cliente": "Planeamos la mudanza completa sin parar la operación."}
         ],
         "hechos": [

@@ -33,7 +33,7 @@
       "extraccion": {
         "productos": [
           {"sku": "SIM-BK-01", "cantidad": 2, "cita": "Son como 2 TB de archivos de clientes", "dile_al_cliente": "Sus archivos quedan respaldados en la nube y nadie los puede borrar."},
-          {"sku": "SIM-BK-05", "cantidad": 2, "cita": "el SAT nos pide guardarlos 5 años", "dile_al_cliente": "Guardamos los respaldos los 5 años que le pide el SAT, listos para una auditoría."},
+          {"sku": "SIM-BK-05", "cantidad": 2, "cita": "Son como 2 TB de archivos de clientes", "dile_al_cliente": "Guardamos los respaldos los 5 años que le pide el SAT, listos para una auditoría."},
           {"sku": "SIM-BK-02", "cantidad": 12, "cita": "los 12 usamos Microsoft 365 para el correo", "dile_al_cliente": "Su correo y archivos de Microsoft 365 también quedan respaldados todos los días."}
         ],
         "hechos": [

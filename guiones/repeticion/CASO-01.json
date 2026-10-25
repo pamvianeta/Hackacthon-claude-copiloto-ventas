@@ -64,7 +64,7 @@
         "productos": [
           {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
           {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."},
-          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "no respaldamos nada, todo está en las computadoras y en el correo", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
+          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "Somos 25 personas en la clínica", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
           {"sku": "SIM-M365-06", "cantidad": 25, "cita": "queremos pasar los correos de las 25 cuentas sin perder nada", "dile_al_cliente": "Pasamos todos sus correos de Gmail a su nuevo correo sin perder ninguno."}
         ],
         "hechos": [
@@ -101,7 +101,7 @@
         "productos": [
           {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
           {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."},
-          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "no respaldamos nada, todo está en las computadoras y en el correo", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
+          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "Somos 25 personas en la clínica", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
           {"sku": "SIM-M365-06", "cantidad": 25, "cita": "queremos pasar los correos de las 25 cuentas sin perder nada", "dile_al_cliente": "Pasamos todos sus correos de Gmail a su nuevo correo sin perder ninguno."}
         ],
         "hechos": [
@@ -139,7 +139,7 @@
         "productos": [
           {"sku": "SIM-M365-03", "cantidad": 25, "cita": "Somos 25 personas en la clínica y tenemos 18 computadoras", "dile_al_cliente": "Correo con su dominio y protección que detiene archivos peligrosos antes de que alguien los abra."},
           {"sku": "SIM-BK-04", "cantidad": 18, "cita": "tenemos 18 computadoras", "dile_al_cliente": "Si una computadora se daña o se infecta, su información se recupera completa."},
-          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "no respaldamos nada, todo está en las computadoras y en el correo", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
+          {"sku": "SIM-BK-02", "cantidad": 25, "cita": "Somos 25 personas en la clínica", "dile_al_cliente": "Su correo y documentos se respaldan solos cada día; si alguien borra algo, se recupera."},
           {"sku": "SIM-M365-06", "cantidad": 25, "cita": "queremos pasar los correos de las 25 cuentas sin perder nada", "dile_al_cliente": "Pasamos todos sus correos de Gmail a su nuevo correo sin perder ninguno."}
         ],
         "hechos": [

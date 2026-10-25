@@ -29,8 +29,11 @@ REGLAS (obligatorias):
 3. Cada producto, hecho, nota, pregunta respondida y elemento fuera de catálogo lleva "cita":
    un fragmento COPIADO TEXTUALMENTE de la transcripción (de 3 a 25 palabras), sin parafrasear,
    sin corregir y sin juntar frases de distintos renglones. Si no hay frase que lo respalde, no lo incluyas.
-4. "cantidad" solo si el cliente dijo un número para la unidad de cobro de ese producto; si no, null.
-5. "hechos": solo los de la lista HECHOS, solo si el cliente lo dijo explícitamente.
+4. "cantidad" solo si el cliente DIJO EN LA LLAMADA un número para la unidad de cobro de ese producto, y
+   entonces la "cita" de ese producto debe ser la frase donde dijo ese número; si no, null.
+   El EXPEDIENTE es solo contexto: nunca saques de ahí cantidades, hechos ni regulación.
+5. "hechos": solo los de la lista HECHOS, solo si el cliente lo dijo explícitamente en la llamada, y la cita
+   debe contener la evidencia (el número dicho, o la palabra que lo prueba: p. ej. «pacientes» para salud).
    Valor numérico: solo dígitos (ej. "300000", "2", "0.5"). Booleano: "true" o "false".
    Texto: uno de los valores permitidos. RTO en horas, RPO en minutos.
 6. NUNCA menciones precios, montos, descuentos ni plazos de entrega. Tú no cotizas.
@@ -135,6 +138,9 @@ def extraer(frases: list[dict], cliente: dict | None = None, aprendizajes: list[
     """Llama a Claude. final=True usa el modelo fuerte (cierre de sesión)."""
     catalogo, reglas = cat_mod.obtener(), cargar_reglas()
     modelo = config.MODELO_FUERTE if final else config.MODELO_RAPIDO
+    # En vivo: sin razonamiento interno (Haiku 5.5 lo permite con esfuerzo bajo) para responder en segundos.
+    # Al cerrar: el modelo fuerte con su razonamiento adaptativo por defecto.
+    extra = {} if final else {"thinking": {"type": "disabled"}}
     try:
         r = _api().messages.create(
             model=modelo,
@@ -143,6 +149,7 @@ def extraer(frases: list[dict], cliente: dict | None = None, aprendizajes: list[
             messages=[{"role": "user", "content": mensaje_usuario(frases, cliente, aprendizajes or [])}],
             output_config={"effort": "medium" if final else "low",
                            "format": {"type": "json_schema", "schema": esquema(catalogo, reglas)}},
+            **extra,
         )
     except anthropic.AuthenticationError as e:
         raise ErrorIA("La clave de Claude no es válida") from e
@@ -159,5 +166,6 @@ def extraer(frases: list[dict], cliente: dict | None = None, aprendizajes: list[
     texto = next((b.text for b in r.content if b.type == "text"), "")
     datos = json.loads(texto)
     datos["_uso"] = {"modelo": modelo, "entrada": r.usage.input_tokens, "salida": r.usage.output_tokens,
-                     "cache_leida": r.usage.cache_read_input_tokens or 0}
+                     "cache_leida": r.usage.cache_read_input_tokens or 0,
+                     "cache_creada": r.usage.cache_creation_input_tokens or 0}
     return datos

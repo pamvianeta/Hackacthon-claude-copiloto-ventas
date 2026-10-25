@@ -33,6 +33,33 @@ def test_numeros_cuentan_y_deben_coincidir():
     assert not cita_valida("son unos 20 TB", T)
 
 
+def test_numeros_en_digitos_y_palabras():
+    from app.verificador import numeros_en
+    assert {2.0, 300000.0, 36.0, 99.95, 250000.0} <= numeros_en(
+        "dos horas, 300 mil al mes, treinta y seis meses, 99.95% y $250,000")
+    assert 24.0 in numeros_en("A veinticuatro meses") and 1.0 in numeros_en("una base de datos")
+
+
+def test_cantidad_sin_respaldo_en_la_cita_se_quita_y_se_cuenta():
+    frases = [{"hablante": "cliente", "texto": "Se cifraron las computadoras. Somos 25 personas."}]
+    extr = {"productos": [{"sku": "SIM-M365-03", "cantidad": 25, "cita": "Se cifraron las computadoras"}],
+            "hechos": [{"nombre": "usuarios_m365", "valor": "30", "cita": "Somos 25 personas"}]}
+    v = verificar(extr, frases, CAT, REGLAS)
+    assert v["requerimiento"]["productos"][0]["cantidad"] is None   # el producto queda; la cantidad se pregunta
+    assert v["requerimiento"]["hechos"] == {}                         # 30 no aparece en «Somos 25 personas»
+    assert {b["tipo"] for b in v["bloqueados"]} == {"cantidad", "hecho"}
+
+
+def test_regulacion_salud_necesita_evidencia_en_la_cita():
+    frases = [{"hablante": "cliente", "texto": "Se cifraron las computadoras. Guardamos los expedientes de los pacientes."}]
+    sin = verificar({"hechos": [{"nombre": "regulacion", "valor": "salud", "cita": "Se cifraron las computadoras"}]},
+                    frases, CAT, REGLAS)
+    con = verificar({"hechos": [{"nombre": "regulacion", "valor": "salud",
+                                 "cita": "Guardamos los expedientes de los pacientes"}]}, frases, CAT, REGLAS)
+    assert sin["requerimiento"]["hechos"] == {} and "pruebe" in sin["bloqueados"][0]["motivo"]
+    assert con["requerimiento"]["hechos"]["regulacion"]["valor"] == "salud"
+
+
 def test_cita_vacia_se_bloquea():
     assert not cita_valida("", T)
 
@@ -102,7 +129,8 @@ def test_extraer_con_api_simulada(monkeypatch):
                 llamadas_api.append(kw)
                 return SimpleNamespace(
                     stop_reason="end_turn", content=[SimpleNamespace(type="text", text=json.dumps(respuesta))],
-                    usage=SimpleNamespace(input_tokens=10, output_tokens=5, cache_read_input_tokens=0))
+                    usage=SimpleNamespace(input_tokens=10, output_tokens=5, cache_read_input_tokens=0,
+                                          cache_creation_input_tokens=0))
 
     monkeypatch.setattr(extraccion, "_api", lambda: Falsa)
     out = extraccion.extraer([{"hablante": "cliente", "texto": "son unos 2 TB"}])
@@ -112,6 +140,7 @@ def test_extraer_con_api_simulada(monkeypatch):
     assert kw["output_config"]["format"]["type"] == "json_schema"
     assert kw["system"][0]["cache_control"] == {"type": "ephemeral"}
     assert "temperature" not in kw
+    assert kw["thinking"] == {"type": "disabled"}  # en vivo responde en segundos
 
 
 # ------------------------------------------------------------- modo repetición de punta a punta
